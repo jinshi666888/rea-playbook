@@ -8,17 +8,66 @@
 `Decompile → Understand → Recreate` 闭环。
 
 [![CI](https://github.com/jinshi666888/rea-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/jinshi666888/rea-playbook/actions/workflows/ci.yml)
-[![Node.js](https://img.shields.io/badge/Node.js-22.19%2B%20%7C%2024.11%2B%20%7C%2026%2B-339933)](https://nodejs.org)
+[![Node.js](https://img.shields.io/badge/Node.js-22.19%2B%20%7C%2024.11%20%7C%2026%2B-339933)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f4c430)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-28%2F28%20passing-4c1)](tests)
+[![Release](https://img.shields.io/github/v/release/jinshi666888/rea-playbook)](https://github.com/jinshi666888/rea-playbook/releases)
 
 </div>
+
+## 30 秒看效果
+
+三条命令，从零到一份带行号的结论清单：
+
+```bash
+npm run analyze && npm run extract && npm run verify
+```
+
+![rea-playbook 三步流程的真实终端输出](docs/assets/demo-terminal.svg)
+
+<details>
+<summary>纯文本版（SVG 不显示时看这里）</summary>
+
+```
+$ npm run analyze
+  [rea] 7 files · 5 parsed JS · 767 AST nodes · 27 findings
+  → evidence.json (1,799,239 bytes)
+
+$ npm run extract
+### IPC CHANNELS (6)
+  profile:read      side=main  op=handle  @ main.js:26:0
+  route:resolve     side=main  op=handle  @ main.js:30:0
+  profile:telemetry side=main  op=on      @ main.js:34:0
+### NETWORK
+  [request]  fetch @ src/profile-store.js:4
+  [response] json  @ src/profile-store.js:13
+
+$ npm run verify
+  PASS  路由表命中 /profile -> profile
+  ...
+  10/10 checks passed
+```
+
+</details>
 
 > **English TL;DR** — This repo is a hands-on playbook for
 > [REA](https://github.com/morluto/rea). It ships a minimal Electron target, an
 > extractor that turns a 1.8 MB Evidence file into a readable, line-referenced
 > report, an MCP probe, and a verified recreate loop. Everything here is
 > executable and tested — no extra reverse-engineering engine required.
+
+---
+
+## 目录
+
+- [这是什么](#这是什么)
+- [为什么不用别的方式](#为什么不用别的方式)（5 个亮点 + 同类对比）
+- [快速开始](#快速开始)
+- [架构](#架构)
+- [使用场景](#使用场景)
+- [示例输出](#示例一次完整分析的输出)
+- [Roadmap](#roadmap)
+- [贡献](#贡献)
 
 ---
 
@@ -325,11 +374,25 @@ Evidence: 7 files, 5 parsed JS, 767 AST nodes, 27 findings
 
 ---
 
+## 贡献
+
+PR 与 issue 都欢迎，流程见 [CONTRIBUTING.md](CONTRIBUTING.md)。最容易被接受的四类改动：
+
+1. 新增分析靶场（`targets/` 下加一个最小可复现目标）
+2. 新的证据提取维度（`src/extract.mjs` 里加一类节点，配一条测试）
+3. 排错手册里补一条你真实遇到并解决的报错（`docs/TROUBLESHOOTING.md`）
+4. 英文版 README（Roadmap 里挂着）
+
+提交前请跑一次 `npm run check`（lint + typecheck + 28 个测试）。
+
+---
+
 ## 相关链接
 
 - REA 上游：<https://github.com/morluto/rea>
 - REA npm 包：<https://www.npmjs.com/package/rea-agents>（包名是 `rea-agents`，不是 `rea`）
 - REA 官网：<https://rea.tools/>
+- 变更记录：[CHANGELOG.md](CHANGELOG.md)
 
 ---
 
