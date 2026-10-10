@@ -1,0 +1,43 @@
+name: Feature request
+description: 新的提取维度、新的分析靶场、或新的工作流示例
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 想解决的问题
+      description: 不要直接写"希望支持 X"，先说你在什么场景下卡住了
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望的形态
+      placeholder: |
+        例如：npm run extract 的输出里增加一类节点，标出所有 ipcMain.handle 的
+        第二个参数（handler）所在行号
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 类型
+      options:
+        - 新的证据提取维度
+        - 新的分析靶场（targets/）
+        - 新的工作流示例
+        - 文档 / FAQ
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 已有的证据
+      description: 如果已经有真实 Evidence 或复现代码，贴出来会大幅加快推进
+    validations:
+      required: false

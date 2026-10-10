@@ -1,0 +1,63 @@
+name: Bug report
+description: 报错、输出不符合预期、或某条命令跑不通
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    value: |
+      提交前请先扫一遍 [FAQ](../../docs/FAQ.md)，约一半的问题那里已有答案。
+
+  - type: input
+    id: environment
+    attributes:
+      label: 环境
+      description: Node 版本 / 操作系统
+      placeholder: "Node v22.22.2 / Windows 11 x64"
+    validations:
+      required: true
+
+  - type: input
+    id: rea-version
+    attributes:
+      label: REA 版本
+      description: "运行 `npx rea-agents --version`，或看 `npm run probe` 输出的 serverInfo"
+      placeholder: "6.3.0"
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      description: 具体到命令，不要写"运行了 analyze"
+      placeholder: |
+        1. npm install
+        2. npm run analyze
+        3. npm run extract
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+      description: 贴完整输出。**错误在 stderr**，请用 `2> err.txt` 抓，只看终端最后一行会漏掉关键诊断。
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 已确认
+      options:
+        - label: Node 版本在 22.19+ / 24.11+ / 26+ 三档内（23、25 不支持）
+          required: false
+        - label: 已查过 FAQ
+          required: false

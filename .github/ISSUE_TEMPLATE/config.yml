@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 常见问题（FAQ）
+    url: https://github.com/jinshi666888/rea-playbook/blob/main/docs/FAQ.md
+    about: doctor 报 false、58/139 工具、input_path 报错等问题这里都有答案
+  - name: 排错手册
+    url: https://github.com/jinshi666888/rea-playbook/blob/main/docs/TROUBLESHOOTING.md
+    about: 12 条报错的对照表与 5 步排查顺序
+  - name: REA 上游问题
+    url: https://github.com/morluto/rea/issues
+    about: 如果问题出在 REA 本身的分析能力，请提给上游
