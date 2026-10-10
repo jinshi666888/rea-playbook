@@ -1,0 +1,67 @@
+{
+  "name": "rea-playbook",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Hands-on playbook and runnable toolkit for REA (Reverse Engineer Anything): a minimal Electron target, an Evidence extractor, an MCP probe, and a verified Decompile -> Understand -> Recreate loop.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "reverse-engineering",
+    "rea",
+    "mcp",
+    "model-context-protocol",
+    "electron",
+    "javascript",
+    "static-analysis",
+    "evidence",
+    "playbook"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinshi666888/rea-playbook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jinshi666888/rea-playbook/issues"
+  },
+  "homepage": "https://github.com/jinshi666888/rea-playbook#readme",
+  "bin": {
+    "rea-playbook": "bin/rea-playbook.mjs"
+  },
+  "engines": {
+    "node": "^22.19.0 || ^24.11.0 || >=26.0.0"
+  },
+  "files": [
+    "bin",
+    "src",
+    "scripts",
+    "recreate",
+    "targets",
+    "fixtures",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md"
+  ],
+  "scripts": {
+    "analyze": "node bin/rea-playbook.mjs analyze",
+    "extract": "node bin/rea-playbook.mjs extract",
+    "verify": "node bin/rea-playbook.mjs verify",
+    "probe": "node bin/rea-playbook.mjs probe",
+    "doctor": "node bin/rea-playbook.mjs doctor",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "node scripts/lint.mjs",
+    "test": "node --test",
+    "test:integration": "node --test tests/integration/",
+    "check": "npm run lint && npm run typecheck && npm run test",
+    "fixture": "node scripts/make-fixture.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.3.1"
+  },
+  "optionalDependencies": {},
+  "devDependencies": {
+    "@types/node": "22.18.8",
+    "rea-agents": "6.3.0",
+    "typescript": "5.9.3"
+  }
+}

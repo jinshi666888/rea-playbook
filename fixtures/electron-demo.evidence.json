@@ -1,0 +1,2151 @@
+{
+  "fixture_of": "rea-agents analyze-javascript-application",
+  "note": "精简样本，仅用于离线测试 extract.mjs；绝对路径已被移除。",
+  "evidence_id": null,
+  "limitations": [
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Dynamic IPC channel expressions remain unresolved and are never paired by textual similarity.",
+    "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ],
+  "normalized_result": {
+    "input_path": "targets/electron-demo",
+    "format": "directory",
+    "summary": {
+      "browser_windows": 1,
+      "explicit_web_preferences": 3,
+      "preload_entrypoints": 1,
+      "context_bridge_apis": 1,
+      "exposed_api_members": 3,
+      "ipc": {
+        "operations": 6,
+        "literal_channels": 3,
+        "dynamic_channel_operations": 3,
+        "renderer_transmissions": 3,
+        "renderer_listeners": 0,
+        "main_handlers": 3,
+        "paired_renderer_transmissions": 0,
+        "ambiguous_renderer_transmissions": 0,
+        "unpaired_literal_renderer_transmissions": 0
+      },
+      "sender_validation_observations": 0,
+      "utility_processes": 0,
+      "resolved_utility_entrypoints": 0,
+      "native_addon_bindings": 0,
+      "resolved_native_addon_bindings": 0
+    },
+    "statistics": {
+      "relevant_files": 7,
+      "nested_asar_containers": 0,
+      "text_bytes_read": 6062,
+      "invalid_utf8_files": 0,
+      "parsed_javascript_files": 5,
+      "visited_ast_nodes": 767,
+      "findings": 27,
+      "modules": 0,
+      "parse_failures": 0
+    },
+    "limitations": [
+      "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+      "Dynamic IPC channel expressions remain unresolved and are never paired by textual similarity.",
+      "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+      "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+      "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+      "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+      "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+      "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+    ],
+    "graph": {
+      "schema": "JavaScriptApplicationGraph",
+      "nodes": [
+        {
+          "node_id": "jag_node_1c2be6924ce34d4574752a9a34d760d53a18b12335aa07995b1b383c8b7b9a26",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "node:path",
+              "properties": {
+                "semantic_role": "module-reference",
+                "declared_specifier": "node:path",
+                "resolution_status": "external"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 1,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 33
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_290585ea1ea32291f5daa2176bfb74d3f9fa2505c99a542431f5da1e88bc13a8",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "node:path",
+              "properties": {
+                "reference_kind": "require",
+                "specifier": "node:path",
+                "expression": null,
+                "resolution": "unresolved"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 1,
+                      "column": 13
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 33
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_313a681cdb609f3914f60cd44f318393405d2a5b36b019bd8c84d166ad5c5b9f",
+          "kind": "artifact",
+          "observations": [
+            {
+              "label": "renderer/index.html",
+              "properties": {
+                "path": "renderer/index.html",
+                "bytes": 1194,
+                "inventory_artifact_id": "art_6e754ea313f6f9557fe6e2fb10377b8c5cce8eee321da3efb76215f4f41258af",
+                "unpacked": false,
+                "file_kind": "html",
+                "text_status": "included",
+                "parse_status": null,
+                "json_parse_status": null,
+                "json_top_level_keys": [],
+                "omitted_json_top_level_keys": 0,
+                "vendor_markers": []
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "renderer/index.html"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_339f95d089e3d8aa122cbb24fd6da8db9472ee078841eca115bcea2c0238c516",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "main.js:default",
+              "properties": {
+                "semantic_role": "export-binding",
+                "module_path": "main.js",
+                "relationship_kind": "commonjs-export",
+                "exported_name": "default",
+                "local_name": null,
+                "imported_name": null,
+                "declared_specifier": null
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 54,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 54,
+                      "column": 53
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "main.js",
+              "properties": {
+                "semantic_role": "source-module",
+                "path": "main.js",
+                "container_sha256": "112e391d3a1d967ed218f89a3b0234a05eaa132fb9bba90334812ab6c6e62b22",
+                "logical_module_key": "main.js",
+                "module_format": "commonjs",
+                "import_relationships": 7,
+                "export_relationships": 1,
+                "export_names": [
+                  "default"
+                ],
+                "omitted_export_names": 0
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 1,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 55,
+                      "column": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_4706a114d5d22c689a0cf011923c3d4784ddb3b8a10288a588ad5546648a5bcb",
+          "kind": "ipc-channel",
+          "observations": [
+            {
+              "label": "TELEMETRY_CHANNEL",
+              "properties": {
+                "side": "renderer",
+                "operation": "send",
+                "mode": "send",
+                "channel": null,
+                "channel_expression": "TELEMETRY_CHANNEL",
+                "resolution": "dynamic"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "preload.js",
+                    "start": {
+                      "line": 10,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 74
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_47371cc06d5eddf3f88647572ff75359b8068453b3f6714f3a36d47f6050b71f",
+          "kind": "package",
+          "observations": [
+            {
+              "label": "electron-demo",
+              "properties": {
+                "path": "package.json",
+                "name": "electron-demo",
+                "version": "1.0.0",
+                "main": "main.js",
+                "renderer": null,
+                "parse_status": "included"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "package.json"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_4aa490a416bf31313b124a7d7d627abc520a83a30a38c66855089bfc577cd895",
+          "kind": "javascript-asset",
+          "observations": [
+            {
+              "label": "renderer/app.js",
+              "properties": {
+                "path": "renderer/app.js",
+                "bytes": 1832,
+                "inventory_artifact_id": "art_7d80150ac1e649d7cefafc648dd58a13592d203de9f3b72477c75a4185cd49f0",
+                "unpacked": false,
+                "file_kind": "javascript",
+                "text_status": "included",
+                "parse_status": "complete",
+                "json_parse_status": null,
+                "json_top_level_keys": [],
+                "omitted_json_top_level_keys": 0,
+                "vendor_markers": []
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "renderer/app.js"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_5037c15258d1e02a5b599213fb5dce7824558a6fc72a520e37d419d320e17c3c",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "src/profile-store.js:default",
+              "properties": {
+                "semantic_role": "export-binding",
+                "module_path": "src/profile-store.js",
+                "relationship_kind": "commonjs-export",
+                "exported_name": "default",
+                "local_name": null,
+                "imported_name": null,
+                "declared_specifier": null
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "src/profile-store.js",
+                    "start": {
+                      "line": 24,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 70
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_56efba96f2a3514f0ee5253dfb076402903239d704a16b2f3cf262c4d7c57033",
+          "kind": "ipc-channel",
+          "observations": [
+            {
+              "label": "route:resolve",
+              "properties": {
+                "side": "main",
+                "operation": "handle",
+                "mode": "handle",
+                "channel": "route:resolve",
+                "channel_expression": null,
+                "resolution": "literal"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 30,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 32,
+                      "column": 2
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_57313c0f0d98ccc287365f4ae63773cd150f835c3b4cbd9874cb16b8b283b64a",
+          "kind": "electron-preload",
+          "observations": [
+            {
+              "label": "preload.js",
+              "properties": {
+                "declared_path": "preload.js",
+                "resolution_context": "filesystem-expression",
+                "resolved_path": "preload.js",
+                "resolution_status": "resolved",
+                "limitations": [],
+                "mechanism": "BrowserWindow:webPreferences.preload"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 13,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 4
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "label": "preload.js",
+              "properties": {
+                "declared_path": "preload.js",
+                "resolution_context": "filesystem-expression",
+                "resolved_path": "preload.js",
+                "resolution_status": "resolved",
+                "limitations": [],
+                "mechanism": "property:preload"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 16,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 49
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_5a7584a651b137db2ad9dfffeb70a9880193fd93b21d1ddf94b0d0b51f7e9415",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "preload.js",
+              "properties": {
+                "semantic_role": "source-module",
+                "path": "preload.js",
+                "container_sha256": "112e391d3a1d967ed218f89a3b0234a05eaa132fb9bba90334812ab6c6e62b22",
+                "logical_module_key": "preload.js",
+                "module_format": "commonjs",
+                "import_relationships": 2,
+                "export_relationships": 0,
+                "export_names": [],
+                "omitted_export_names": 0
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "preload.js",
+                    "start": {
+                      "line": 1,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_5b1dc185e7acc6f5422f468f50e270feb390412ea908adb3fed86fe5f0136e28",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "electron",
+              "properties": {
+                "reference_kind": "require",
+                "specifier": "electron",
+                "expression": null,
+                "resolution": "unresolved"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 2,
+                      "column": 40
+                    },
+                    "end": {
+                      "line": 2,
+                      "column": 59
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "kind": "artifact",
+          "observations": [
+            {
+              "label": "artifact root",
+              "properties": {
+                "format": "directory",
+                "bytes": 0,
+                "inventory_manifest_id": "agm_df0661fa76ed96b01d27a640de49ab2f3551d4da9a201b9a87c3e39c9cc5d5b8",
+                "inventory_graph_sha256": "147e6e1d62cecbb27a17b144d1721cfb41f809e8e48f730ee33e29707c18fcdf",
+                "inventory_artifact_id": "art_c0be0374ae6453ef4d79ee7506e7c667f70ac321bebefff4b5ea534ce9576ee6"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "artifact-root"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_6b8008b1117ecfebbe7eb99ecff1363cf985d1e81754a4a582775a19f29392aa",
+          "kind": "ipc-channel",
+          "observations": [
+            {
+              "label": "PROFILE_CHANNEL",
+              "properties": {
+                "side": "renderer",
+                "operation": "invoke",
+                "mode": "invoke",
+                "channel": null,
+                "channel_expression": "PROFILE_CHANNEL",
+                "resolution": "dynamic"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "preload.js",
+                    "start": {
+                      "line": 8,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 76
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_733dba12260ceb9a03fbc3ddbc484d06999c9c41fd97bbeb3975a40c1909740d",
+          "kind": "ipc-channel",
+          "observations": [
+            {
+              "label": "ROUTE_CHANNEL",
+              "properties": {
+                "side": "renderer",
+                "operation": "invoke",
+                "mode": "invoke",
+                "channel": null,
+                "channel_expression": "ROUTE_CHANNEL",
+                "resolution": "dynamic"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "preload.js",
+                    "start": {
+                      "line": 9,
+                      "column": 29
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 71
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_7dc16fd15a18b4714357bb87e4872d7d355449eda6b80a8d1e322a3863139e4a",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "src/profile-store.js",
+              "properties": {
+                "semantic_role": "source-module",
+                "path": "src/profile-store.js",
+                "container_sha256": "112e391d3a1d967ed218f89a3b0234a05eaa132fb9bba90334812ab6c6e62b22",
+                "logical_module_key": "src/profile-store.js",
+                "module_format": "commonjs",
+                "import_relationships": 0,
+                "export_relationships": 1,
+                "export_names": [
+                  "default"
+                ],
+                "omitted_export_names": 0
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "src/profile-store.js",
+                    "start": {
+                      "line": 1,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_824fdd7ef1827764647a99b58f0d33957e7a87aae28a698647193ab7e53d71df",
+          "kind": "javascript-asset",
+          "observations": [
+            {
+              "label": "src/routes.js",
+              "properties": {
+                "path": "src/routes.js",
+                "bytes": 492,
+                "inventory_artifact_id": "art_1e5a8bc192247f75db30a9924f361700bff89fa25ed6a87faa0e91f4df6c01db",
+                "unpacked": false,
+                "file_kind": "javascript",
+                "text_status": "included",
+                "parse_status": "complete",
+                "json_parse_status": null,
+                "json_top_level_keys": [],
+                "omitted_json_top_level_keys": 0,
+                "vendor_markers": []
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "src/routes.js"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_853b03f1723d03fef944adeea2ee066772c9f5d10faf6b4e8890baae351ec74d",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "src/routes.js",
+              "properties": {
+                "semantic_role": "source-module",
+                "path": "src/routes.js",
+                "container_sha256": "112e391d3a1d967ed218f89a3b0234a05eaa132fb9bba90334812ab6c6e62b22",
+                "logical_module_key": "src/routes.js",
+                "module_format": "commonjs",
+                "import_relationships": 0,
+                "export_relationships": 1,
+                "export_names": [
+                  "default"
+                ],
+                "omitted_export_names": 0
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "src/routes.js",
+                    "start": {
+                      "line": 1,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 15,
+                      "column": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_863083e4c18c7bf1d85488ff95f69a0da476659e1c7c8a215e39c2e74c12d23e",
+          "kind": "electron-renderer",
+          "observations": [
+            {
+              "label": "renderer/index.html",
+              "properties": {
+                "declared_path": "renderer/index.html",
+                "resolution_context": "html-reference",
+                "resolved_path": "renderer/index.html",
+                "resolution_status": "resolved",
+                "limitations": [],
+                "mechanism": "html-script-entrypoint"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "renderer/index.html"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_a441178373ef4f6cd66f65eafc49dc9e2c44f3168de4b1aaa6accc037d0fa063",
+          "kind": "ipc-handler",
+          "observations": [
+            {
+              "label": "route:resolve",
+              "properties": {
+                "side": "main",
+                "operation": "handle",
+                "mode": "handle",
+                "channel": "route:resolve",
+                "channel_expression": null,
+                "handler_kind": "inline-function",
+                "handler_location": {
+                  "start": {
+                    "line": 30,
+                    "column": 32
+                  },
+                  "end": {
+                    "line": 32,
+                    "column": 1
+                  }
+                }
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 30,
+                      "column": 32
+                    },
+                    "end": {
+                      "line": 32,
+                      "column": 1
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_a54e3fc46ace12d9f5472dcea57a35531d971a532e986b402445b718f0d2ba8f",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "electron",
+              "properties": {
+                "semantic_role": "module-reference",
+                "declared_specifier": "electron",
+                "resolution_status": "external"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "preload.js",
+                    "start": {
+                      "line": 1,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 58
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_b293e9650e1c1d2f2e99751e07b2a4c16ab14538b78e1e9bdec5fb2d7b5dba46",
+          "kind": "ipc-handler",
+          "observations": [
+            {
+              "label": "profile:telemetry",
+              "properties": {
+                "side": "main",
+                "operation": "on",
+                "mode": "listen",
+                "channel": "profile:telemetry",
+                "channel_expression": null,
+                "handler_kind": "inline-function",
+                "handler_location": {
+                  "start": {
+                    "line": 34,
+                    "column": 32
+                  },
+                  "end": {
+                    "line": 36,
+                    "column": 1
+                  }
+                }
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 34,
+                      "column": 32
+                    },
+                    "end": {
+                      "line": 36,
+                      "column": 1
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_b593da6b32a71354b3ba291ae3e800fad83b6678ff10b37721e15f7ee42a39c4",
+          "kind": "browser-window",
+          "observations": [
+            {
+              "label": "BrowserWindow@13:14-20:4",
+              "properties": {
+                "source_path": "main.js",
+                "options_status": "object-literal",
+                "web_preferences_status": "object-literal",
+                "web_preferences": [
+                  {
+                    "name": "contextIsolation",
+                    "value": {
+                      "status": "literal",
+                      "value": true,
+                      "expression": null
+                    }
+                  },
+                  {
+                    "name": "nodeIntegration",
+                    "value": {
+                      "status": "literal",
+                      "value": false,
+                      "expression": null
+                    }
+                  },
+                  {
+                    "name": "preload",
+                    "value": {
+                      "status": "literal",
+                      "value": "preload.js",
+                      "expression": null
+                    }
+                  }
+                ],
+                "preload_path": "preload.js",
+                "preload_resolution_context": "filesystem-expression",
+                "absence_means_default": false
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 13,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 4
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_bc1f8c3a47fd023924cb38ddcb82ef9018fcf1cee956d4088a32ff3b4468aa98",
+          "kind": "artifact",
+          "observations": [
+            {
+              "label": "package.json",
+              "properties": {
+                "path": "package.json",
+                "bytes": 176,
+                "inventory_artifact_id": "art_5fe64ef285364e65567658d0dcc3b0695e26b276324e8ce999bec9128b7c65ee",
+                "unpacked": false,
+                "file_kind": "package-json",
+                "text_status": "included",
+                "parse_status": null,
+                "json_parse_status": null,
+                "json_top_level_keys": [],
+                "omitted_json_top_level_keys": 0,
+                "vendor_markers": []
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "package.json"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_bfd6ffdef4c6c44f3e5af7f1f36e83b6a661d2a9a88feda8d0042861cbae6f4b",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "electron",
+              "properties": {
+                "semantic_role": "module-reference",
+                "declared_specifier": "electron",
+                "resolution_status": "external"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 2,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 2,
+                      "column": 59
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_c05ee4c1849dc1fe82de5809e5bb705841be4fc3bd78e015d667355687abaffa",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "renderer/app.js",
+              "properties": {
+                "semantic_role": "source-module",
+                "path": "renderer/app.js",
+                "container_sha256": "112e391d3a1d967ed218f89a3b0234a05eaa132fb9bba90334812ab6c6e62b22",
+                "logical_module_key": "renderer/app.js",
+                "module_format": "unknown",
+                "import_relationships": 0,
+                "export_relationships": 0,
+                "export_names": [],
+                "omitted_export_names": 0
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "renderer/app.js",
+                    "start": {
+                      "line": 1,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 67,
+                      "column": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_c1579f13c5598227cfa4bda833fb5cfd460794aa81c0375e8b8d9ec6b06fe7e4",
+          "kind": "ipc-channel",
+          "observations": [
+            {
+              "label": "profile:telemetry",
+              "properties": {
+                "side": "main",
+                "operation": "on",
+                "mode": "listen",
+                "channel": "profile:telemetry",
+                "channel_expression": null,
+                "resolution": "literal"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 34,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 36,
+                      "column": 2
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_d089ce864a6c00bf50ae6b865e1b53a9a570d105be43ccf8ebfa2fe084ba0864",
+          "kind": "context-bridge-api",
+          "observations": [
+            {
+              "label": "demoBridge",
+              "properties": {
+                "world": "main",
+                "world_id": null,
+                "api_key": "demoBridge",
+                "api_key_expression": null,
+                "api_status": "object-literal",
+                "members": [
+                  "readProfile",
+                  "resolveRoute",
+                  "sendTelemetry"
+                ],
+                "unknown_members": 0
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "preload.js",
+                    "start": {
+                      "line": 7,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 2
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "kind": "javascript-asset",
+          "observations": [
+            {
+              "label": "preload.js",
+              "properties": {
+                "path": "preload.js",
+                "bytes": 466,
+                "inventory_artifact_id": "art_7e75e0621d35e9c5870da391888f3b5c7e617de006fd1e3f5763baafe23911d4",
+                "unpacked": false,
+                "file_kind": "javascript",
+                "text_status": "included",
+                "parse_status": "partial",
+                "json_parse_status": null,
+                "json_top_level_keys": [],
+                "omitted_json_top_level_keys": 0,
+                "vendor_markers": []
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "preload.js"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_d5c0f1edb8950b73e92b977f085104794569f66fb3c350dfa9d25b3a28ce9420",
+          "kind": "javascript-asset",
+          "observations": [
+            {
+              "label": "main.js",
+              "properties": {
+                "path": "main.js",
+                "bytes": 1269,
+                "inventory_artifact_id": "art_856f9d1544bb0a5d4418dcf72c619b57cc917ed678b27d8383eb209b8516e571",
+                "unpacked": false,
+                "file_kind": "javascript",
+                "text_status": "included",
+                "parse_status": "complete",
+                "json_parse_status": null,
+                "json_top_level_keys": [],
+                "omitted_json_top_level_keys": 0,
+                "vendor_markers": []
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "main.js"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_d89931154a7868f86bcbf2d79ef938886d7ddfc7920e1302770621ec7f9d0ab8",
+          "kind": "ipc-channel",
+          "observations": [
+            {
+              "label": "profile:read",
+              "properties": {
+                "side": "main",
+                "operation": "handle",
+                "mode": "handle",
+                "channel": "profile:read",
+                "channel_expression": null,
+                "resolution": "literal"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 26,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 28,
+                      "column": 2
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_dbc1840efc03b09405cf935e6f4548cabeb3fe1a663f166abb89b90840135f96",
+          "kind": "electron-main",
+          "observations": [
+            {
+              "label": "main.js",
+              "properties": {
+                "declared_path": "main.js",
+                "resolution_context": "package-entrypoint",
+                "resolved_path": "main.js",
+                "resolution_status": "resolved",
+                "limitations": [],
+                "mechanism": "package.json:main"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "package.json"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_e7e851d54f49f33c50f25b68ab18f98fa105a62d60c2f4e83fa1034fcfc1e221",
+          "kind": "ipc-handler",
+          "observations": [
+            {
+              "label": "profile:read",
+              "properties": {
+                "side": "main",
+                "operation": "handle",
+                "mode": "handle",
+                "channel": "profile:read",
+                "channel_expression": null,
+                "handler_kind": "inline-function",
+                "handler_location": {
+                  "start": {
+                    "line": 26,
+                    "column": 31
+                  },
+                  "end": {
+                    "line": 28,
+                    "column": 1
+                  }
+                }
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "main.js",
+                    "start": {
+                      "line": 26,
+                      "column": 31
+                    },
+                    "end": {
+                      "line": 28,
+                      "column": 1
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_e9b51a885190d84d7440a760844d889cb737e68de419687065ca2aecff14fc96",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "electron",
+              "properties": {
+                "reference_kind": "require",
+                "specifier": "electron",
+                "expression": null,
+                "resolution": "unresolved"
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "preload.js",
+                    "start": {
+                      "line": 1,
+                      "column": 39
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 58
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_f1464936c75e2e0eec7a7d08eec8c56373dfe1dda32ae99fec38618c12a0e2eb",
+          "kind": "javascript-module",
+          "observations": [
+            {
+              "label": "src/routes.js:default",
+              "properties": {
+                "semantic_role": "export-binding",
+                "module_path": "src/routes.js",
+                "relationship_kind": "commonjs-export",
+                "exported_name": "default",
+                "local_name": null,
+                "imported_name": null,
+                "declared_specifier": null
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "source-range",
+                    "source": "src/routes.js",
+                    "start": {
+                      "line": 14,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 65
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "node_id": "jag_node_f20a9ba0dd44d5846ec106f26981619c86454c1ac7ca9bdcf8e7aedf9ff6b464",
+          "kind": "javascript-asset",
+          "observations": [
+            {
+              "label": "src/profile-store.js",
+              "properties": {
+                "path": "src/profile-store.js",
+                "bytes": 633,
+                "inventory_artifact_id": "art_8ea2aa731a3ef54e5c45b61fd1dccdb20b6c68c0ef96bb08dbbd739ae1b3af01",
+                "unpacked": false,
+                "file_kind": "javascript",
+                "text_status": "included",
+                "parse_status": "complete",
+                "json_parse_status": null,
+                "json_top_level_keys": [],
+                "omitted_json_top_level_keys": 0,
+                "vendor_markers": []
+              },
+              "evidence": {
+                "location": {
+                  "available": true,
+                  "value": {
+                    "kind": "artifact-path",
+                    "path": "src/profile-store.js"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_node_id": "jag_node_863083e4c18c7bf1d85488ff95f69a0da476659e1c7c8a215e39c2e74c12d23e",
+          "target_node_id": "jag_node_313a681cdb609f3914f60cd44f318393405d2a5b36b019bd8c84d166ad5c5b9f",
+          "relation": "maps_to"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_339f95d089e3d8aa122cbb24fd6da8db9472ee078841eca115bcea2c0238c516",
+          "relation": "exposes"
+        },
+        {
+          "source_node_id": "jag_node_863083e4c18c7bf1d85488ff95f69a0da476659e1c7c8a215e39c2e74c12d23e",
+          "target_node_id": "jag_node_4aa490a416bf31313b124a7d7d627abc520a83a30a38c66855089bfc577cd895",
+          "relation": "loads"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_1c2be6924ce34d4574752a9a34d760d53a18b12335aa07995b1b383c8b7b9a26",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_d5c0f1edb8950b73e92b977f085104794569f66fb3c350dfa9d25b3a28ce9420",
+          "target_node_id": "jag_node_e7e851d54f49f33c50f25b68ab18f98fa105a62d60c2f4e83fa1034fcfc1e221",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_d5c0f1edb8950b73e92b977f085104794569f66fb3c350dfa9d25b3a28ce9420",
+          "target_node_id": "jag_node_b293e9650e1c1d2f2e99751e07b2a4c16ab14538b78e1e9bdec5fb2d7b5dba46",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "target_node_id": "jag_node_bc1f8c3a47fd023924cb38ddcb82ef9018fcf1cee956d4088a32ff3b4468aa98",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_5a7584a651b137db2ad9dfffeb70a9880193fd93b21d1ddf94b0d0b51f7e9415",
+          "target_node_id": "jag_node_e9b51a885190d84d7440a760844d889cb737e68de419687065ca2aecff14fc96",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_47371cc06d5eddf3f88647572ff75359b8068453b3f6714f3a36d47f6050b71f",
+          "target_node_id": "jag_node_dbc1840efc03b09405cf935e6f4548cabeb3fe1a663f166abb89b90840135f96",
+          "relation": "loads"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_824fdd7ef1827764647a99b58f0d33957e7a87aae28a698647193ab7e53d71df",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_853b03f1723d03fef944adeea2ee066772c9f5d10faf6b4e8890baae351ec74d",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_7dc16fd15a18b4714357bb87e4872d7d355449eda6b80a8d1e322a3863139e4a",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "target_node_id": "jag_node_6b8008b1117ecfebbe7eb99ecff1363cf985d1e81754a4a582775a19f29392aa",
+          "relation": "invokes"
+        },
+        {
+          "source_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "target_node_id": "jag_node_863083e4c18c7bf1d85488ff95f69a0da476659e1c7c8a215e39c2e74c12d23e",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_bfd6ffdef4c6c44f3e5af7f1f36e83b6a661d2a9a88feda8d0042861cbae6f4b",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_290585ea1ea32291f5daa2176bfb74d3f9fa2505c99a542431f5da1e88bc13a8",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "target_node_id": "jag_node_d5c0f1edb8950b73e92b977f085104794569f66fb3c350dfa9d25b3a28ce9420",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "target_node_id": "jag_node_824fdd7ef1827764647a99b58f0d33957e7a87aae28a698647193ab7e53d71df",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_57313c0f0d98ccc287365f4ae63773cd150f835c3b4cbd9874cb16b8b283b64a",
+          "target_node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "relation": "maps_to"
+        },
+        {
+          "source_node_id": "jag_node_f20a9ba0dd44d5846ec106f26981619c86454c1ac7ca9bdcf8e7aedf9ff6b464",
+          "target_node_id": "jag_node_7dc16fd15a18b4714357bb87e4872d7d355449eda6b80a8d1e322a3863139e4a",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "target_node_id": "jag_node_4aa490a416bf31313b124a7d7d627abc520a83a30a38c66855089bfc577cd895",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "target_node_id": "jag_node_d089ce864a6c00bf50ae6b865e1b53a9a570d105be43ccf8ebfa2fe084ba0864",
+          "relation": "exposes"
+        },
+        {
+          "source_node_id": "jag_node_57313c0f0d98ccc287365f4ae63773cd150f835c3b4cbd9874cb16b8b283b64a",
+          "target_node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "relation": "maps_to"
+        },
+        {
+          "source_node_id": "jag_node_5a7584a651b137db2ad9dfffeb70a9880193fd93b21d1ddf94b0d0b51f7e9415",
+          "target_node_id": "jag_node_a54e3fc46ace12d9f5472dcea57a35531d971a532e986b402445b718f0d2ba8f",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_dbc1840efc03b09405cf935e6f4548cabeb3fe1a663f166abb89b90840135f96",
+          "target_node_id": "jag_node_d5c0f1edb8950b73e92b977f085104794569f66fb3c350dfa9d25b3a28ce9420",
+          "relation": "maps_to"
+        },
+        {
+          "source_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "target_node_id": "jag_node_313a681cdb609f3914f60cd44f318393405d2a5b36b019bd8c84d166ad5c5b9f",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_5a7584a651b137db2ad9dfffeb70a9880193fd93b21d1ddf94b0d0b51f7e9415",
+          "target_node_id": "jag_node_a54e3fc46ace12d9f5472dcea57a35531d971a532e986b402445b718f0d2ba8f",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_d5c0f1edb8950b73e92b977f085104794569f66fb3c350dfa9d25b3a28ce9420",
+          "target_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_d5c0f1edb8950b73e92b977f085104794569f66fb3c350dfa9d25b3a28ce9420",
+          "target_node_id": "jag_node_a441178373ef4f6cd66f65eafc49dc9e2c44f3168de4b1aaa6accc037d0fa063",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_bfd6ffdef4c6c44f3e5af7f1f36e83b6a661d2a9a88feda8d0042861cbae6f4b",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "target_node_id": "jag_node_733dba12260ceb9a03fbc3ddbc484d06999c9c41fd97bbeb3975a40c1909740d",
+          "relation": "invokes"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_853b03f1723d03fef944adeea2ee066772c9f5d10faf6b4e8890baae351ec74d",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "target_node_id": "jag_node_f20a9ba0dd44d5846ec106f26981619c86454c1ac7ca9bdcf8e7aedf9ff6b464",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "target_node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_a441178373ef4f6cd66f65eafc49dc9e2c44f3168de4b1aaa6accc037d0fa063",
+          "target_node_id": "jag_node_56efba96f2a3514f0ee5253dfb076402903239d704a16b2f3cf262c4d7c57033",
+          "relation": "handles"
+        },
+        {
+          "source_node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "target_node_id": "jag_node_5a7584a651b137db2ad9dfffeb70a9880193fd93b21d1ddf94b0d0b51f7e9415",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_b293e9650e1c1d2f2e99751e07b2a4c16ab14538b78e1e9bdec5fb2d7b5dba46",
+          "target_node_id": "jag_node_c1579f13c5598227cfa4bda833fb5cfd460794aa81c0375e8b8d9ec6b06fe7e4",
+          "relation": "handles"
+        },
+        {
+          "source_node_id": "jag_node_e7e851d54f49f33c50f25b68ab18f98fa105a62d60c2f4e83fa1034fcfc1e221",
+          "target_node_id": "jag_node_d89931154a7868f86bcbf2d79ef938886d7ddfc7920e1302770621ec7f9d0ab8",
+          "relation": "handles"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_5b1dc185e7acc6f5422f468f50e270feb390412ea908adb3fed86fe5f0136e28",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_f20a9ba0dd44d5846ec106f26981619c86454c1ac7ca9bdcf8e7aedf9ff6b464",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_824fdd7ef1827764647a99b58f0d33957e7a87aae28a698647193ab7e53d71df",
+          "target_node_id": "jag_node_853b03f1723d03fef944adeea2ee066772c9f5d10faf6b4e8890baae351ec74d",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_d5c0f1edb8950b73e92b977f085104794569f66fb3c350dfa9d25b3a28ce9420",
+          "target_node_id": "jag_node_b593da6b32a71354b3ba291ae3e800fad83b6678ff10b37721e15f7ee42a39c4",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_d10cfda457ab1adf00982826fb0ed236005ef9661ef399466bb31a195ac139d6",
+          "target_node_id": "jag_node_4706a114d5d22c689a0cf011923c3d4784ddb3b8a10288a588ad5546648a5bcb",
+          "relation": "sends"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_57313c0f0d98ccc287365f4ae63773cd150f835c3b4cbd9874cb16b8b283b64a",
+          "relation": "loads"
+        },
+        {
+          "source_node_id": "jag_node_853b03f1723d03fef944adeea2ee066772c9f5d10faf6b4e8890baae351ec74d",
+          "target_node_id": "jag_node_f1464936c75e2e0eec7a7d08eec8c56373dfe1dda32ae99fec38618c12a0e2eb",
+          "relation": "exposes"
+        },
+        {
+          "source_node_id": "jag_node_4aa490a416bf31313b124a7d7d627abc520a83a30a38c66855089bfc577cd895",
+          "target_node_id": "jag_node_c05ee4c1849dc1fe82de5809e5bb705841be4fc3bd78e015d667355687abaffa",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_47371cc06d5eddf3f88647572ff75359b8068453b3f6714f3a36d47f6050b71f",
+          "target_node_id": "jag_node_5d7a1fee986d905f13f7759b937b9f2512dac49b2096ab10ce51e668e066e8ec",
+          "relation": "contains"
+        },
+        {
+          "source_node_id": "jag_node_3b460bd6851010936e64563b414b58c23223fbb0494c250de908a7f9a69e02d2",
+          "target_node_id": "jag_node_bfd6ffdef4c6c44f3e5af7f1f36e83b6a661d2a9a88feda8d0042861cbae6f4b",
+          "relation": "imports"
+        },
+        {
+          "source_node_id": "jag_node_7dc16fd15a18b4714357bb87e4872d7d355449eda6b80a8d1e322a3863139e4a",
+          "target_node_id": "jag_node_5037c15258d1e02a5b599213fb5dce7824558a6fc72a520e37d419d320e17c3c",
+          "relation": "exposes"
+        },
+        {
+          "source_node_id": "jag_node_b593da6b32a71354b3ba291ae3e800fad83b6678ff10b37721e15f7ee42a39c4",
+          "target_node_id": "jag_node_57313c0f0d98ccc287365f4ae63773cd150f835c3b4cbd9874cb16b8b283b64a",
+          "relation": "loads"
+        }
+      ]
+    },
+    "semantic_graph": {
+      "schema": "JavaScriptSemanticRelationGraph",
+      "nodes": [
+        {
+          "kind": "task",
+          "label": "awaited expression",
+          "identity": {
+            "artifact_sha256": "b3aeee77391bdfa1f3f5be1bb61483c166ffc1aea61a0ee7b89c8b6a6878424f",
+            "module_path": "src/profile-store.js",
+            "source_range": {
+              "start": {
+                "line": 4,
+                "column": 19
+              },
+              "end": {
+                "line": 7,
+                "column": 4
+              }
+            },
+            "role_key": "promise:awaited-expression:131:248"
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"settings\"",
+          "identity": {
+            "artifact_sha256": "b9ff4665cac2184c9bef95f83504db206a0e10ebc7b96870075d471253d82984",
+            "module_path": "src/routes.js",
+            "source_range": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "role_key": "literal:scope:program:0:492:binding:PROFILE_ROUTES:property:/~1settings/view:\"settings\""
+          }
+        },
+        {
+          "kind": "task",
+          "label": "awaited expression",
+          "identity": {
+            "artifact_sha256": "80f4571c981fa4ee9a11a87575dcc75c02ce54a6ac8f6e2173d46c2bb8c2673d",
+            "module_path": "renderer/app.js",
+            "source_range": {
+              "start": {
+                "line": 55,
+                "column": 20
+              },
+              "end": {
+                "line": 55,
+                "column": 65
+              }
+            },
+            "role_key": "promise:awaited-expression:1447:1492"
+          }
+        },
+        {
+          "kind": "listener",
+          "label": "on:profile:telemetry",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": {
+              "start": {
+                "line": 34,
+                "column": 32
+              },
+              "end": {
+                "line": 36,
+                "column": 1
+              }
+            },
+            "role_key": "listener:event:register:815:941"
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"dashboard\"",
+          "identity": {
+            "artifact_sha256": "80f4571c981fa4ee9a11a87575dcc75c02ce54a6ac8f6e2173d46c2bb8c2673d",
+            "module_path": "renderer/app.js",
+            "source_range": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 18
+              }
+            },
+            "role_key": "literal:scope:program:0:1832:binding:LOCAL_ROUTES:property:/~1:\"dashboard\""
+          }
+        },
+        {
+          "kind": "listener",
+          "label": "on:activate",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": {
+              "start": {
+                "line": 41,
+                "column": 21
+              },
+              "end": {
+                "line": 45,
+                "column": 3
+              }
+            },
+            "role_key": "listener:event:register:994:1107"
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"profile:telemetry\"",
+          "identity": {
+            "artifact_sha256": "072d8e85fa73b01cde97006d7dc07542c3f8c09357e89f12620a4a27903e1046",
+            "module_path": "preload.js",
+            "source_range": {
+              "start": {
+                "line": 5,
+                "column": 6
+              },
+              "end": {
+                "line": 5,
+                "column": 23
+              }
+            },
+            "role_key": "literal:scope:program:0:466:binding:TELEMETRY_CHANNEL:binding:\"profile:telemetry\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"profile\"",
+          "identity": {
+            "artifact_sha256": "b9ff4665cac2184c9bef95f83504db206a0e10ebc7b96870075d471253d82984",
+            "module_path": "src/routes.js",
+            "source_range": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "role_key": "literal:scope:program:0:492:binding:PROFILE_ROUTES:property:/~1profile/view:\"profile\""
+          }
+        },
+        {
+          "kind": "request",
+          "label": "fetch",
+          "identity": {
+            "artifact_sha256": "b3aeee77391bdfa1f3f5be1bb61483c166ffc1aea61a0ee7b89c8b6a6878424f",
+            "module_path": "src/profile-store.js",
+            "source_range": {
+              "start": {
+                "line": 4,
+                "column": 25
+              },
+              "end": {
+                "line": 7,
+                "column": 4
+              }
+            },
+            "role_key": "request:137:248"
+          }
+        },
+        {
+          "kind": "task",
+          "label": "awaited expression",
+          "identity": {
+            "artifact_sha256": "80f4571c981fa4ee9a11a87575dcc75c02ce54a6ac8f6e2173d46c2bb8c2673d",
+            "module_path": "renderer/app.js",
+            "source_range": {
+              "start": {
+                "line": 51,
+                "column": 16
+              },
+              "end": {
+                "line": 51,
+                "column": 58
+              }
+            },
+            "role_key": "promise:awaited-expression:1274:1316"
+          }
+        },
+        {
+          "kind": "event",
+          "label": "window-all-closed",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": null,
+            "role_key": "event:binding:scope:program:0:1269:binding:app\u0000window-all-closed"
+          }
+        },
+        {
+          "kind": "event",
+          "label": "profile:telemetry",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": null,
+            "role_key": "event:binding:scope:program:0:1269:binding:ipcMain\u0000profile:telemetry"
+          }
+        },
+        {
+          "kind": "event",
+          "label": "activate",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": null,
+            "role_key": "event:binding:scope:program:0:1269:binding:app\u0000activate"
+          }
+        },
+        {
+          "kind": "response",
+          "label": "json",
+          "identity": {
+            "artifact_sha256": "b3aeee77391bdfa1f3f5be1bb61483c166ffc1aea61a0ee7b89c8b6a6878424f",
+            "module_path": "src/profile-store.js",
+            "source_range": {
+              "start": {
+                "line": 13,
+                "column": 9
+              },
+              "end": {
+                "line": 13,
+                "column": 24
+              }
+            },
+            "role_key": "response:366:381"
+          }
+        },
+        {
+          "kind": "listener",
+          "label": "on:window-all-closed",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": {
+              "start": {
+                "line": 48,
+                "column": 28
+              },
+              "end": {
+                "line": 52,
+                "column": 1
+              }
+            },
+            "role_key": "listener:event:register:1114:1211"
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"REA Demo Shell\"",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": {
+              "start": {
+                "line": 6,
+                "column": 6
+              },
+              "end": {
+                "line": 6,
+                "column": 22
+              }
+            },
+            "role_key": "literal:scope:program:0:1269:binding:WINDOW_BOOTSTRAP:property:/title:\"REA Demo Shell\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "720",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": {
+              "start": {
+                "line": 6,
+                "column": 6
+              },
+              "end": {
+                "line": 6,
+                "column": 22
+              }
+            },
+            "role_key": "literal:scope:program:0:1269:binding:WINDOW_BOOTSTRAP:property:/height:720"
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"settings\"",
+          "identity": {
+            "artifact_sha256": "80f4571c981fa4ee9a11a87575dcc75c02ce54a6ac8f6e2173d46c2bb8c2673d",
+            "module_path": "renderer/app.js",
+            "source_range": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 18
+              }
+            },
+            "role_key": "literal:scope:program:0:1832:binding:LOCAL_ROUTES:property:/~1settings:\"settings\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"profile:read\"",
+          "identity": {
+            "artifact_sha256": "072d8e85fa73b01cde97006d7dc07542c3f8c09357e89f12620a4a27903e1046",
+            "module_path": "preload.js",
+            "source_range": {
+              "start": {
+                "line": 3,
+                "column": 6
+              },
+              "end": {
+                "line": 3,
+                "column": 21
+              }
+            },
+            "role_key": "literal:scope:program:0:466:binding:PROFILE_CHANNEL:binding:\"profile:read\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"not-found\"",
+          "identity": {
+            "artifact_sha256": "b9ff4665cac2184c9bef95f83504db206a0e10ebc7b96870075d471253d82984",
+            "module_path": "src/routes.js",
+            "source_range": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 20
+              }
+            },
+            "role_key": "literal:scope:program:0:492:binding:FALLBACK_ROUTE:property:/view:\"not-found\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"Profile\"",
+          "identity": {
+            "artifact_sha256": "b9ff4665cac2184c9bef95f83504db206a0e10ebc7b96870075d471253d82984",
+            "module_path": "src/routes.js",
+            "source_range": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "role_key": "literal:scope:program:0:492:binding:PROFILE_ROUTES:property:/~1profile/title:\"Profile\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"Settings\"",
+          "identity": {
+            "artifact_sha256": "b9ff4665cac2184c9bef95f83504db206a0e10ebc7b96870075d471253d82984",
+            "module_path": "src/routes.js",
+            "source_range": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "role_key": "literal:scope:program:0:492:binding:PROFILE_ROUTES:property:/~1settings/title:\"Settings\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"route:resolve\"",
+          "identity": {
+            "artifact_sha256": "072d8e85fa73b01cde97006d7dc07542c3f8c09357e89f12620a4a27903e1046",
+            "module_path": "preload.js",
+            "source_range": {
+              "start": {
+                "line": 4,
+                "column": 6
+              },
+              "end": {
+                "line": 4,
+                "column": 19
+              }
+            },
+            "role_key": "literal:scope:program:0:466:binding:ROUTE_CHANNEL:binding:\"route:resolve\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"https://api.example.com/v1/profiles\"",
+          "identity": {
+            "artifact_sha256": "b3aeee77391bdfa1f3f5be1bb61483c166ffc1aea61a0ee7b89c8b6a6878424f",
+            "module_path": "src/profile-store.js",
+            "source_range": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 22
+              }
+            },
+            "role_key": "literal:scope:program:0:633:binding:PROFILE_ENDPOINT:binding:\"https://api.example.com/v1/profiles\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "1024",
+          "identity": {
+            "artifact_sha256": "00ae491378a33118892610ff60e037b462fdf4944b1f71c0bc2fdbc1d9f774c4",
+            "module_path": "main.js",
+            "source_range": {
+              "start": {
+                "line": 6,
+                "column": 6
+              },
+              "end": {
+                "line": 6,
+                "column": 22
+              }
+            },
+            "role_key": "literal:scope:program:0:1269:binding:WINDOW_BOOTSTRAP:property:/width:1024"
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"Not Found\"",
+          "identity": {
+            "artifact_sha256": "b9ff4665cac2184c9bef95f83504db206a0e10ebc7b96870075d471253d82984",
+            "module_path": "src/routes.js",
+            "source_range": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 20
+              }
+            },
+            "role_key": "literal:scope:program:0:492:binding:FALLBACK_ROUTE:property:/title:\"Not Found\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"Dashboard\"",
+          "identity": {
+            "artifact_sha256": "b9ff4665cac2184c9bef95f83504db206a0e10ebc7b96870075d471253d82984",
+            "module_path": "src/routes.js",
+            "source_range": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "role_key": "literal:scope:program:0:492:binding:PROFILE_ROUTES:property:/~1/title:\"Dashboard\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"dashboard\"",
+          "identity": {
+            "artifact_sha256": "b9ff4665cac2184c9bef95f83504db206a0e10ebc7b96870075d471253d82984",
+            "module_path": "src/routes.js",
+            "source_range": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "role_key": "literal:scope:program:0:492:binding:PROFILE_ROUTES:property:/~1/view:\"dashboard\""
+          }
+        },
+        {
+          "kind": "literal",
+          "label": "\"profile\"",
+          "identity": {
+            "artifact_sha256": "80f4571c981fa4ee9a11a87575dcc75c02ce54a6ac8f6e2173d46c2bb8c2673d",
+            "module_path": "renderer/app.js",
+            "source_range": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 18
+              }
+            },
+            "role_key": "literal:scope:program:0:1832:binding:LOCAL_ROUTES:property:/~1profile:\"profile\""
+          }
+        }
+      ]
+    }
+  }
+}
