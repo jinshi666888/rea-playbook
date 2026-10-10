@@ -1,0 +1,12 @@
+#app-header {
+  border-bottom: 1px solid #ccc;
+  padding: 8px 16px;
+}
+
+.route-link {
+  margin-right: 12px;
+}
+
+.view {
+  padding: 16px;
+}
