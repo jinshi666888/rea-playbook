@@ -11,7 +11,15 @@
 
 ## [Unreleased]
 
-### Planned
+### Added
+
+- `docs/FAQ.md` — 10 条高频问题的实测答案（doctor 误报、58/139 工具、`input_path` 参数名、
+  Node 版本支持范围等）
+- `.devcontainer/devcontainer.json` — GitHub Codespaces 一键环境，无需本地安装即可体验
+- README 三种上手方式：本地 / Codespaces / 只读脱敏样本
+- `.github/ISSUE_TEMPLATE/`（bug / feature / config）与 `.github/pull_request_template.md`
+- `.github/workflows/release.yml` — 推送 `v*.*.*` tag 时先跑 `npm run check` 再自动发布 Release
+- README 首屏终端演示图与目录
 
 - 网站前端靶场：`inspect_web_page` 的 CDP 示例与 DOM / 网络证据提取
 - `.asar` 真实应用示例

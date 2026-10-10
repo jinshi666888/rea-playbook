@@ -12,6 +12,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-f4c430)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-28%2F28%20passing-4c1)](tests)
 [![Release](https://img.shields.io/github/v/release/jinshi666888/rea-playbook)](https://github.com/jinshi666888/rea-playbook/releases)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/jinshi666888/rea-playbook)
 
 </div>
 
@@ -63,6 +64,7 @@ $ npm run verify
 - [这是什么](#这是什么)
 - [为什么不用别的方式](#为什么不用别的方式)（5 个亮点 + 同类对比）
 - [快速开始](#快速开始)
+- [常见问题 FAQ](docs/FAQ.md)
 - [架构](#架构)
 - [使用场景](#使用场景)
 - [示例输出](#示例一次完整分析的输出)
@@ -210,6 +212,31 @@ npm run verify
 ```bash
 node -v    # 确认版本
 ```
+
+### 三种上手方式
+
+**① 本地（推荐）**
+
+```bash
+git clone https://github.com/jinshi666888/rea-playbook.git
+cd rea-playbook
+npm install
+```
+
+**② 不想装任何东西**
+
+点顶部的 **Open in GitHub Codespaces** 徽章，浏览器里直接开一个配好的环境，
+`npm install` 已自动跑完，直接执行下面三条命令即可。
+
+**③ 只想看看输出长什么样**
+
+不用装 REA，直接读提取结果：
+
+```bash
+node bin/rea-playbook.mjs extract fixtures/electron-demo.evidence.json
+```
+
+它跑在仓库自带的 75 KB 脱敏样本上，离线可用。
 
 ### 三步跑通
 
@@ -371,6 +398,22 @@ Evidence: 7 files, 5 parsed JS, 767 AST nodes, 27 findings
 - [ ] 英文版 README
 
 欢迎提 issue 或 PR，见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+---
+
+## 常见问题
+
+高频问题集中在 [`docs/FAQ.md`](docs/FAQ.md)，几个最常被问的：
+
+| 现象 | 结论 |
+|---|---|
+| `rea doctor` 报 `healthy: false` | **不影响使用**。只看 `node` 和 `host` 两项，都是 ok 就能跑 |
+| MCP 报 `58/139 tools available` | **不是故障**。其余 81 个需 Hopper/Ghidra/IDA 或 Linux PTY |
+| 工具调用报 `Input validation error` | 参数名是 **`input_path`**，不是 `path` |
+| Node 23 / 25 跑不起来 | 明确不支持，只能用 22.19+ / 24.11+ / 26+ |
+| `git clone` 报 `invalid index-pack output` | 本机网络链路问题，走 npm 通道可绕过 |
+
+完整版见 [FAQ](docs/FAQ.md)，排错对照表见 [TROUBLESHOOTING](docs/TROUBLESHOOTING.md)。
 
 ---
 
