@@ -14,6 +14,9 @@
     "javascript",
     "static-analysis",
     "evidence",
+    "evidence-extraction",
+    "electron-analysis",
+    "mcp-probe",
     "playbook"
   ],
   "repository": {
@@ -39,11 +42,13 @@
     "fixtures",
     "docs",
     "README.md",
+    "README.zh-CN.md",
     "LICENSE",
     "CONTRIBUTING.md"
   ],
   "scripts": {
     "analyze": "node bin/rea-playbook.mjs analyze",
+    "demo:offline": "node bin/rea-playbook.mjs demo:offline",
     "extract": "node bin/rea-playbook.mjs extract",
     "verify": "node bin/rea-playbook.mjs verify",
     "probe": "node bin/rea-playbook.mjs probe",

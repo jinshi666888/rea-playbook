@@ -1,272 +1,109 @@
-<div align="center">
-
 # rea-playbook
 
-**把 REA（Reverse Engineer Anything）从"知道有这个东西"变成"照着做就能跑通"。**
-
-一个最小可分析的 Electron 靶场、一个 Evidence 提取器、一个 MCP 探针，和一条已经跑通的
-`Decompile → Understand → Recreate` 闭环。
+A hands-on REA playbook: inspect a minimal Electron app, turn REA's 1.8 MB Evidence JSON into readable `file:line` findings, probe the MCP server, and verify a recreate example — **without installing a native reverse-engineering engine**.
 
 [![CI](https://github.com/jinshi666888/rea-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/jinshi666888/rea-playbook/actions/workflows/ci.yml)
-[![Node.js](https://img.shields.io/badge/Node.js-22.19%2B%20%7C%2024.11%20%7C%2026%2B-339933)](https://nodejs.org)
+[![Node.js](https://img.shields.io/badge/Node.js-22.19%2B%20%7C%2024.11%2B%20%7C%2026%2B-339933)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f4c430)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-28%2F28%20passing-4c1)](tests)
 [![Release](https://img.shields.io/github/v/release/jinshi666888/rea-playbook)](https://github.com/jinshi666888/rea-playbook/releases)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/jinshi666888/rea-playbook)
 
-</div>
+[中文 README](README.zh-CN.md) · [Report issue](https://github.com/jinshi666888/rea-playbook/issues)
 
-## 30 秒看效果
+---
 
-三条命令，从零到一份带行号的结论清单：
+## 30-second demo
+
+Three commands from zero to a line-referenced report:
 
 ```bash
 npm run analyze && npm run extract && npm run verify
 ```
 
-![rea-playbook 三步流程的真实终端输出](docs/assets/demo-terminal.svg)
+![rea-playbook demo: analyze → extract → verify](docs/assets/demo.gif)
 
-<details>
-<summary>纯文本版（SVG 不显示时看这里）</summary>
-
-```
-$ npm run analyze
-  [rea] 7 files · 5 parsed JS · 767 AST nodes · 27 findings
-  → evidence.json (1,799,239 bytes)
-
-$ npm run extract
-### IPC CHANNELS (6)
-  profile:read      side=main  op=handle  @ main.js:26:0
-  route:resolve     side=main  op=handle  @ main.js:30:0
-  profile:telemetry side=main  op=on      @ main.js:34:0
-### NETWORK
-  [request]  fetch @ src/profile-store.js:4
-  [response] json  @ src/profile-store.js:13
-
-$ npm run verify
-  PASS  路由表命中 /profile -> profile
-  ...
-  10/10 checks passed
-```
-
-</details>
-
-> **English TL;DR** — This repo is a hands-on playbook for
-> [REA](https://github.com/morluto/rea). It ships a minimal Electron target, an
-> extractor that turns a 1.8 MB Evidence file into a readable, line-referenced
-> report, an MCP probe, and a verified recreate loop. Everything here is
-> executable and tested — no extra reverse-engineering engine required.
+> The output above is a **real** recording, not hand-written. It was generated from captured stdout of the actual commands.
 
 ---
 
-## 目录
+## What this is
 
-- [这是什么](#这是什么)
-- [为什么不用别的方式](#为什么不用别的方式)（5 个亮点 + 同类对比）
-- [快速开始](#快速开始)
-- [常见问题 FAQ](docs/FAQ.md)
-- [架构](#架构)
-- [使用场景](#使用场景)
-- [示例输出](#示例一次完整分析的输出)
-- [Roadmap](#roadmap)
-- [贡献](#贡献)
+[REA (Reverse Engineer Anything)](https://github.com/morluto/rea) is a powerful MCP-based reverse-engineering toolkit, but getting from "I have a 1.8 MB Evidence file" to "this is what it means" is a gap.
 
----
+**rea-playbook** fills that gap:
 
-## 这是什么
-
-REA 是一个基于 MCP 的逆向工程工具，能力很强，但上手有几道坎：
-
-- 它输出一份 **1.8 MB 的 Evidence JSON**，人没法直接读
-- 它的 MCP 有 **139 个工具**，其中 81 个需要你没装的分析引擎，新手分不清哪些能用
-- 官方文档讲清了"怎么装"，但"拿到证据之后怎么变成代码"这一步是空的
-
-**rea-playbook 补的就是这段路。** 它不是一个替代品，而是 REA 旁边的实操层：
-
-| 你有什么 | rea-playbook 给你 |
+| You have | rea-playbook gives you |
 |---|---|
-| 想试 REA 但没有分析目标 | 一个 8 文件的最小 Electron 应用，覆盖 IPC / 路由 / DOM / fetch |
-| 一份 1.8 MB 的 Evidence | 一份带 `文件:行号` 的可读清单（压缩到 4.21%） |
-| 不确定 MCP 是否配好 | 一条命令验证握手、工具清单与真实调用 |
-| 不知道证据怎么变成代码 | 一个跑通的 Recreate 示例，10/10 断言 |
+| A desire to try REA but no analysis target | An 8-file minimal Electron app covering IPC / routing / DOM / fetch |
+| A 1.8 MB Evidence file | A readable, `file:line`-referenced report (compressed to 4.21%) |
+| A question about whether MCP is configured | A one-command MCP handshake + real tool call probe |
+| Evidence but no code | A verified recreate loop, 10/10 assertions |
+
+This is **not a replacement for REA**. It is the runnable layer next to it.
 
 ---
 
-## 为什么不用别的方式
+## Why not the alternatives?
 
-### 5 个差异化亮点
+1. **No native engine required** — REA's native path needs Hopper / Ghidra / IDA on macOS or Linux. REA's JavaScript / Electron path needs only Node.js. This repo proves that path end-to-end.
+2. **Every claim maps to a file:line** — `profile:read @ main.js:26:0`, `route:resolve @ main.js:30:0`, not fuzzy summaries.
+3. **Says "I don't know" explicitly** — REA does not pair IPC channels by textual similarity. We test that `paired_renderer_transmissions: 0` stays zero.
+4. **1.8 MB → 75 KB** — the fixture extractor keeps only verifiable facts. The offline sample is 4.21% of the original.
+5. **Recreate is tested** — evidence → code → test, all in one repo.
 
-#### 1. 零引擎起步 —— 不需要 Hopper / Ghidra / IDA
-
-REA 的原生分析需要 Hopper、Ghidra 或 IDA，且宿主基线是 macOS 12+ / Ubuntu 24.04+。
-**但它的 JavaScript / Electron 路线什么都不需要**，只要 Node.js。
-
-可验证：
-
-```bash
-npm run doctor
-# node  → ok, 22.22.2
-# host  → ok, win32 x64
-# hopper/ghidra/ida → missing_analysis_engine
-```
-
-`healthy: false` 是因为引擎没装 —— **JavaScript 路线照样全通**。本仓库 28 个测试
-在 Node 22.19 与 24.11 上全绿，过程中没有启动过任何逆向引擎。
-
-> 顺带说清楚：REA 报 `58/139 tools available` 是**正常状态**，不是故障。
-> 多出的 81 个要原生引擎或 Linux/macOS 专属能力，走 JS 路线用不到。
-
-#### 2. 每条结论都能回到 `文件:行号`
-
-不是"AI 觉得这里大概有个 IPC"，而是明确指出它在哪一行。
-
-实测输出（节选）：
-
-```
-### IPC CHANNELS (6)
-  profile:read       side=main     op=handle  resolution=literal  @ main.js:26:0
-  route:resolve      side=main     op=handle  resolution=literal  @ main.js:30:0
-  profile:telemetry  side=main     op=on      resolution=literal  @ main.js:34:0
-  PROFILE_CHANNEL    side=renderer op=invoke  resolution=dynamic  @ preload.js:8:30
-  ROUTE_CHANNEL      side=renderer op=invoke  resolution=dynamic  @ preload.js:9:29
-  TELEMETRY_CHANNEL  side=renderer op=send    resolution=dynamic  @ preload.js:10:30
-
-### ELECTRON BOUNDARIES
-  [browser-window] BrowserWindow@13:14-20:4                        @ main.js:13:14
-  [context-bridge-api] demoBridge members=[readProfile,resolveRoute,sendTelemetry] @ preload.js:7:0
-```
-
-6 条 IPC 通道、3 个 handler、1 个 BrowserWindow、1 个 contextBridge —— 每一条都能
-打开文件跳过去核对。本仓库的测试直接断言这些行号。
-
-#### 3. 不知道就说不知道 —— 不做"看起来很合理"的配对
-
-`preload.js` 里的三个通道是**常量引用**，REA 没有硬猜它们等于什么：
-
-```
-paired_renderer_transmissions: 0
-```
-
-它在 `limitations` 里写得很直白：
-
-> Dynamic IPC channel expressions remain unresolved and are never paired by
-> textual similarity.
-
-这不是缺陷，是设计。宁可给 `resolution: dynamic`，也不编一个"大概是 profile:read"。
-**本仓库的测试专门断言了这一点**：3 个动态通道的 `channel` 字段必须是 `null`。
-
-#### 4. 1.8 MB → 75 KB：Evidence 降噪 95.79%
-
-原始 Evidence 是给人看的反面教材。提取器只保留可回溯的事实：
-
-```
-输入: evidence.json (1,799,239 字节)
-输出: fixtures/electron-demo.evidence.json (75,821 字节)
-压缩比: 4.21%
-```
-
-自己复现压缩比：
-
-```bash
-npm run analyze                          # 先产出一个真实 Evidence
-node scripts/make-fixture.mjs evidence.json /tmp/slim.json
-```
-
-#### 5. 闭环可验证：证据 → 代码 → 测试
-
-REA 到"给证据"就结束了。本仓库补了后半段，并且**让它可回归**：
-
-```bash
-npm run verify
-#   PASS  路由表命中 /profile -> profile
-#   PASS  未知路径走 FALLBACK_ROUTE -> not-found
-#   PASS  bridge.readProfile 降级到 local-cache（对应 catch 分支）
-#   PASS  bridge.sendTelemetry 单向无返回值（对应 ipcRenderer.send）
-#   ...
-# 10/10 checks passed
-```
-
-`recreate/` 下每个文件头部都标了它对应哪条证据（哪个文件、第几行）。改坏了会立刻红。
-
-### 和同类做法的对比
-
-| 方式 | 装东西 | 结论可回溯 | 会用"不知道"兜底 | 有回归测试 |
+| Approach | Install | Traceable | Handles uncertainty | Regression tests |
 |---|---|---|---|---|
-| 把代码直接丢给 LLM | 不需要 | 否，容易编 | 否 | 否 |
-| Ghidra / Hopper 手工逆向 | 要装，且要许可 | 是 | 是 | 否 |
-| 纯 AST 工具（ast-grep 等） | 轻量 | 语法级，无 IPC/Electron 语义 | 不适用 | 视项目 |
-| **REA + 本 playbook** | **只需 Node.js** | **是，精确到行** | **是，显式 limitations** | **是，28 个测试** |
-
-需要说明的是：**本仓库不是 REA 的替代品，也不改 REA 一行代码**。REA 负责分析，
-本仓库负责让你把分析结果用起来。
+| Throw code at an LLM | None | No | No | No |
+| Ghidra / Hopper manual | Engine + license | Yes | Yes | No |
+| Plain AST tooling (ast-grep, etc.) | Light | Syntax only | N/A | Sometimes |
+| **REA + rea-playbook** | **Only Node.js** | **Yes, to the line** | **Yes, via limitations** | **Yes, 28 tests** |
 
 ---
 
-## 快速开始
+## Three ways to try
 
-### 环境要求
+### 1. Offline preview — no REA, no network
 
-- Node.js `22.19+` / `24.11+` / `26+`（**23 和 25 不受 REA 支持**）
-- npm
-
-```bash
-node -v    # 确认版本
-```
-
-### 三种上手方式
-
-**① 本地（推荐）**
+The fastest way to see what the output looks like. It only reads the bundled, sanitized fixture and runs pure-Node assertions.
 
 ```bash
-git clone https://github.com/jinshi666888/rea-playbook.git
-cd rea-playbook
-npm install
+npm install          # or skip this in GitHub Codespaces
+npm run demo:offline # → reads fixtures/electron-demo.evidence.json, prints report, runs 10/10 checks
 ```
 
-**② 不想装任何东西**
+This path does **not** call `npx`, download `rea-agents`, or start any reverse-engineering engine.
 
-点顶部的 **Open in GitHub Codespaces** 徽章，浏览器里直接开一个配好的环境，
-`npm install` 已自动跑完，直接执行下面三条命令即可。
-
-**③ 只想看看输出长什么样**
-
-不用装 REA，直接读提取结果：
-
-```bash
-node bin/rea-playbook.mjs extract fixtures/electron-demo.evidence.json
-```
-
-它跑在仓库自带的 75 KB 脱敏样本上，离线可用。
-
-### 三步跑通
+### 2. Real analysis — calls REA
 
 ```bash
 git clone https://github.com/jinshi666888/rea-playbook.git
 cd rea-playbook
 npm install
-
-npm run analyze     # ① Decompile：分析内置 Electron 目标，产出 Evidence
-npm run extract     # ② Understand：把 Evidence 变成带行号的可读清单
-npm run verify      # ③ Recreate：跑复现代码的断言测试
+npm run analyze   # Decompile: produce local Evidence with REA
+npm run extract   # Understand: line-referenced report
+npm run verify    # Recreate: 10/10 assertions
 ```
 
-`npm run analyze` 会自动定位 REA：优先用 `REA_BIN` 环境变量，其次本地
-`node_modules/.bin/rea`，最后回退到 `npx rea-agents@6.3.0`。
+`npm run analyze` will fetch `rea-agents@6.3.0` on first use via `npx` fallback.
 
-### 验证 MCP 通道
+### 3. GitHub Codespaces
+
+Click the **Open in GitHub Codespaces** badge at the top. The container has Node.js 22 and `npm install` pre-run.
+
+---
+
+## Verify the MCP channel
 
 ```bash
 npm run probe
 # REA launcher: node_modules
 # serverInfo:   {"name":"rea","version":"6.3.0"}
 # tools:        139 total, 58 available
-#   analyze_javascript_application PRESENT
 # analyze_javascript_application: isError=false
 ```
 
-### 接上你自己的 AI 客户端
-
-REA 的 MCP 服务是 **stdio** 传输，入口参数是 `mcp`：
+MCP config for your client (REA uses stdio, the positional arg is `mcp`):
 
 ```json
 {
@@ -279,80 +116,51 @@ REA 的 MCP 服务是 **stdio** 传输，入口参数是 `mcp`：
 }
 ```
 
-版本号**写死**而不是 `@latest`，配置后**重启客户端**。
-REA 的 `setup` 命令支持 Claude Code、Codex、Cursor、Gemini CLI、Windsurf、
-OpenCode、VS Code 等客户端，交互式运行即可：
-
-```bash
-npx rea-agents setup
-```
+Pin the version. After writing the config, restart your client.
 
 ---
 
-## 架构
+## Architecture
 
-### 目录
-
-```
+```text
 rea-playbook/
-├── bin/rea-playbook.mjs    统一 CLI 入口（analyze / extract / verify / probe / doctor）
+├── bin/rea-playbook.mjs        # CLI: demo:offline / analyze / extract / verify / probe / doctor
 ├── src/
-│   ├── paths.mjs           路径与 REA 可执行文件的唯一解析处（无硬编码机器路径）
-│   ├── extract.mjs         Evidence → 带行号的结构化事实
-│   └── mcp-probe.mjs       通过 MCP 协议验证 REA
-├── targets/electron-demo/  最小可分析目标（8 文件）
-├── recreate/               证据 → 代码 → 测试的闭环示例
-├── fixtures/               脱敏的精简 Evidence（75 KB，供离线测试）
+│   ├── extract.mjs             # Evidence → structured facts with file:line
+│   ├── mcp-probe.mjs           # MCP stdio probe
+│   └── paths.mjs               # no hard-coded machine paths
+├── targets/electron-demo/      # 8-file minimal target
+├── recreate/                   # evidence → code → test loop
+├── fixtures/                   # sanitized offline sample (75 KB)
 ├── scripts/
-│   ├── lint.mjs            零依赖静态检查
-│   └── make-fixture.mjs    从真实 Evidence 生成脱敏样本
-└── tests/                  28 个测试
+│   ├── lint.mjs                # zero-dependency static checks
+│   └── make-fixture.mjs        # generate sanitized fixture from real Evidence
+└── tests/                      # 28 tests, fully offline
 ```
-
-### 数据流
 
 ```mermaid
 flowchart LR
     T[targets/electron-demo] -->|npm run analyze| R[REA CLI / MCP]
-    R -->|Evidence JSON ~1.8MB| E[src/extract.mjs]
-    E -->|带 文件:行号 的清单| U[你读结论]
-    U -->|照着证据写| C[recreate/]
-    C -->|npm run verify| V[10/10 断言]
-    E -.->|脱敏 4.21%| F[fixtures/]
-    F -.->|离线断言| TS[tests/]
+    R -->|Evidence ~1.8 MB| E[src/extract.mjs]
+    E -->|file:line report| U[you read conclusions]
+    U -->|write from evidence| C[recreate/]
+    C -->|npm run verify| V[10/10 assertions]
+    E -.->|sanitize 4.21%| F[fixtures/]
+    F -.->|offline assertions| TS[tests/]
 ```
-
-### 设计约束
-
-1. **没有硬编码的机器路径**。所有路径走 `src/paths.mjs`，`npm run lint` 和
-   `tests/hygiene.test.mjs` 双重拦截。
-2. **测试不能依赖网络或 REA**。核心测试跑在 `fixtures/` 的脱敏样本上，
-   `npm test` 离线即可通过。
-3. **Evidence 产物不入库**。`.gitignore` 排除 `evidence.json`，它含本机绝对路径。
 
 ---
 
-## 使用场景
+## Use cases
 
-**想学 REA 但不知道从哪下手**
-→ 直接 `npm run analyze && npm run extract`，两分钟看到真实输出长什么样。
-
-**要分析自己的 Electron 应用**
-```bash
-npm run analyze -- /your/app/dir /tmp/out.json
-node bin/rea-playbook.mjs extract /tmp/out.json
-```
-`.asar` 文件同样支持，REA 会自动识别。
-
-**要把 REA 接进自己的 Agent**
-→ 抄 `src/mcp-probe.mjs` 的连接方式，用 `npm run probe` 验证。
-
-**要向团队证明"这个逆向结论可信"**
-→ 用 `npm run extract` 的输出，每条都带行号，可直接贴进文档或评审。
+- **Want to learn REA but don't know where to start** → `npm run demo:offline` shows real output in one minute.
+- **Need to analyze your own Electron app** → `npm run analyze -- /your/app/dir /tmp/out.json`, then `npm run extract /tmp/out.json`.
+- **Want to plug REA into your own agent** → copy `src/mcp-probe.mjs` and run `npm run probe` to verify.
+- **Need to prove a reverse-engineering conclusion** → `npm run extract` output carries exact file:line references for docs or review.
 
 ---
 
-## 示例：一次完整分析的输出
+## Example: a complete analysis output
 
 ```bash
 $ npm run extract
@@ -360,18 +168,13 @@ $ npm run extract
 Evidence: 7 files, 5 parsed JS, 767 AST nodes, 27 findings
 
 ### IPC CHANNELS (6)
-  profile:read           side=main  op=handle  channel=profile:read      resolution=literal  @ main.js:26:0
-  route:resolve          side=main  op=handle  channel=route:resolve     resolution=literal  @ main.js:30:0
-  profile:telemetry      side=main  op=on      channel=profile:telemetry resolution=literal  @ main.js:34:0
-  PROFILE_CHANNEL        side=renderer op=invoke channel=<dynamic>       resolution=dynamic  @ preload.js:8:30
-  ROUTE_CHANNEL          side=renderer op=invoke channel=<dynamic>       resolution=dynamic  @ preload.js:9:29
-  TELEMETRY_CHANNEL      side=renderer op=send   channel=<dynamic>       resolution=dynamic  @ preload.js:10:30
+  profile:read       side=main  op=handle  channel=profile:read      resolution=literal  @ main.js:26:0
+  route:resolve      side=main  op=handle  channel=route:resolve     resolution=literal  @ main.js:30:0
+  profile:telemetry side=main  op=on      channel=profile:telemetry resolution=literal  @ main.js:34:0
 
-### IMPORTS (14)
-  main.js -> electron
-  main.js -> node:path
-  main.js -> src/routes.js
-  ...
+### ELECTRON BOUNDARIES
+  [browser-window] BrowserWindow@13:14-20:4                        @ main.js:13:14
+  [context-bridge-api] demoBridge members=[readProfile,resolveRoute,sendTelemetry] @ preload.js:7:0
 
 ### NETWORK
   [request]  fetch @ src/profile-store.js:4
@@ -379,63 +182,58 @@ Evidence: 7 files, 5 parsed JS, 767 AST nodes, 27 findings
 
 ### LIMITATIONS
   - Dynamic IPC channel expressions remain unresolved and are never paired by textual similarity.
-  - Electron relationships are derived from inert syntax; runtime registration, reachability,
-    defaults, and enforcement remain unproven.
-  - Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.
 ```
 
-完整的部署细节与排错手册见 [`docs/`](docs)。
+Full deployment and troubleshooting guides are in [`docs/`](docs).
+
+---
+
+## FAQ
+
+Frequent questions live in [`docs/FAQ.md`](docs/FAQ.md). Highlights:
+
+| Symptom | Answer |
+|---|---|
+| `rea doctor` reports `healthy: false` | Only `node` and `host` matter for the JS path; missing engines are expected |
+| `58/139 tools available` | Expected — the rest need native engines or Linux/macOS features |
+| MCP `Input validation error` | The parameter is **`input_path`**, not `path` |
+| Node 23 / 25 fails | Not supported; use 22.19+ / 24.11+ / 26+ |
+| `git clone` fails with `invalid index-pack output` | This machine's GitHub transport is flaky; use npm path or a different network |
+
+---
+
+## Contributing
+
+PRs and issues are welcome. The four best types of contribution:
+
+1. Add a new analysis target under `targets/`.
+2. Add a new extraction dimension in `src/extract.mjs` with a test.
+3. Add a real error and fix to `docs/TROUBLESHOOTING.md` or `docs/FAQ.md`.
+4. Translate or improve documentation.
+
+Run `npm run check` (lint + typecheck + tests) before opening a PR.
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ---
 
 ## Roadmap
 
-- [x] v1.0 — Electron 靶场 + Evidence 提取 + Recreate 闭环 + MCP 探针
-- [ ] 网站前端靶场：`inspect_web_page` 的 CDP 示例与 DOM / 网络证据提取
-- [ ] `.asar` 真实应用示例（需要一个可公开分发的样本）
-- [ ] `compare_application_versions` 的版本差异工作流示例
-- [ ] 多目标对比报告模板
-- [ ] 英文版 README
-
-欢迎提 issue 或 PR，见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+- [x] v1.0 — Electron target + Evidence extraction + Recreate loop + MCP probe
+- [ ] Website-frontend target: CDP example with DOM / network extraction
+- [ ] A real `.asar` sample that can be publicly redistributed
+- [ ] `compare_application_versions` workflow example
+- [ ] English localization of remaining docs (already in progress)
 
 ---
 
-## 常见问题
+## Related links
 
-高频问题集中在 [`docs/FAQ.md`](docs/FAQ.md)，几个最常被问的：
-
-| 现象 | 结论 |
-|---|---|
-| `rea doctor` 报 `healthy: false` | **不影响使用**。只看 `node` 和 `host` 两项，都是 ok 就能跑 |
-| MCP 报 `58/139 tools available` | **不是故障**。其余 81 个需 Hopper/Ghidra/IDA 或 Linux PTY |
-| 工具调用报 `Input validation error` | 参数名是 **`input_path`**，不是 `path` |
-| Node 23 / 25 跑不起来 | 明确不支持，只能用 22.19+ / 24.11+ / 26+ |
-| `git clone` 报 `invalid index-pack output` | 本机网络链路问题，走 npm 通道可绕过 |
-
-完整版见 [FAQ](docs/FAQ.md)，排错对照表见 [TROUBLESHOOTING](docs/TROUBLESHOOTING.md)。
-
----
-
-## 贡献
-
-PR 与 issue 都欢迎，流程见 [CONTRIBUTING.md](CONTRIBUTING.md)。最容易被接受的四类改动：
-
-1. 新增分析靶场（`targets/` 下加一个最小可复现目标）
-2. 新的证据提取维度（`src/extract.mjs` 里加一类节点，配一条测试）
-3. 排错手册里补一条你真实遇到并解决的报错（`docs/TROUBLESHOOTING.md`）
-4. 英文版 README（Roadmap 里挂着）
-
-提交前请跑一次 `npm run check`（lint + typecheck + 28 个测试）。
-
----
-
-## 相关链接
-
-- REA 上游：<https://github.com/morluto/rea>
-- REA npm 包：<https://www.npmjs.com/package/rea-agents>（包名是 `rea-agents`，不是 `rea`）
-- REA 官网：<https://rea.tools/>
-- 变更记录：[CHANGELOG.md](CHANGELOG.md)
+- REA upstream: <https://github.com/morluto/rea>
+- REA npm package: <https://www.npmjs.com/package/rea-agents> (package name is `rea-agents`, not `rea`)
+- REA website: <https://rea.tools/>
+- Changelog: [`CHANGELOG.md`](CHANGELOG.md)
+- Growth log: [`docs/growth-log.md`](docs/growth-log.md)
 
 ---
 
@@ -443,5 +241,4 @@ PR 与 issue 都欢迎，流程见 [CONTRIBUTING.md](CONTRIBUTING.md)。最容�
 
 [MIT](LICENSE) © 2026 jinshi666888
 
-本仓库不含 REA 的任何源码，仅在运行时调用已发布的 `rea-agents` npm 包。
-REA 自身为 MIT 许可，版权归其作者所有。
+This repo does not contain REA source code. It calls the published `rea-agents` npm package at runtime. REA itself is MIT and its copyright belongs to its authors.

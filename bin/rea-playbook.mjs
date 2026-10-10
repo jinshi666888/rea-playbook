@@ -85,6 +85,34 @@ async function cmdVerify() {
   }
 }
 
+/**
+ * 离线预览：只读仓库自带的脱敏样本，跑 Recreate 断言。
+ * 契约（README 与 CI 都依赖它）：
+ *   - 不调用 REA，不 spawn npx，不访问网络
+ *   - 只需要 node，不需要 npm install 之外的任何东西
+ */
+async function cmdDemoOffline() {
+  const line = "─".repeat(64);
+  console.log(line);
+  console.log("OFFLINE PREVIEW / 离线预览");
+  console.log("读取仓库自带的脱敏样本，不调用 REA、不联网、不启动原生逆向引擎。");
+  console.log(line);
+  console.log("");
+  console.log(`样本: ${path.relative(ROOT, FIXTURE_EVIDENCE)}`);
+  console.log("");
+  await cmdExtract(FIXTURE_EVIDENCE);
+  console.log("");
+  console.log(line);
+  console.log("Recreate 断言（evidence -> code -> test）:");
+  console.log(line);
+  await cmdVerify();
+  console.log("");
+  console.log(line);
+  console.log("离线预览结束。以上结果全部来自仓库内已提交的文件。");
+  console.log("要跑真实分析（会调用 REA 并下载 rea-agents）：npm run analyze");
+  console.log(line);
+}
+
 async function cmdProbe(target = DEFAULT_TARGET) {
   let mod;
   try {
@@ -108,16 +136,24 @@ async function cmdDoctor() {
 }
 
 /** @type {Record<string, (...args: any[]) => any>} */
-const commands = { analyze: cmdAnalyze, extract: cmdExtract, verify: cmdVerify, probe: cmdProbe, doctor: cmdDoctor };
+const commands = {
+  analyze: cmdAnalyze,
+  extract: cmdExtract,
+  verify: cmdVerify,
+  "demo:offline": cmdDemoOffline,
+  probe: cmdProbe,
+  doctor: cmdDoctor
+};
 
 if (command === "help" || !commands[command]) {
   console.log(`用法: rea-playbook <command> [args]
 
-  analyze [target] [out]  静态分析目标，默认 targets/electron-demo
-  extract [file]          把 Evidence 转成可读清单，默认仓库自带样本
-  verify                  跑 Recreate 断言测试
-  probe [target]          通过 MCP 验证 REA
-  doctor                  透传 REA 自检
+  demo:offline           【离线预览】只读自带样本，不调用 REA、不联网
+  analyze [target] [out] 【真实分析】调用 REA 分析目标，产出本地 Evidence
+  extract [file]         把 Evidence 转成可读清单，默认仓库自带样本
+  verify                 跑 Recreate 断言测试
+  probe [target]         通过 MCP 验证 REA
+  doctor                 透传 REA 自检
 `);
   process.exit(command === "help" ? 0 : 1);
 }

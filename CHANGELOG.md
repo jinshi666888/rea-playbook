@@ -13,19 +13,26 @@
 
 ### Added
 
-- `docs/FAQ.md` — 10 条高频问题的实测答案（doctor 误报、58/139 工具、`input_path` 参数名、
-  Node 版本支持范围等）
-- `.devcontainer/devcontainer.json` — GitHub Codespaces 一键环境，无需本地安装即可体验
-- README 三种上手方式：本地 / Codespaces / 只读脱敏样本
-- `.github/ISSUE_TEMPLATE/`（bug / feature / config）与 `.github/pull_request_template.md`
-- `.github/workflows/release.yml` — 推送 `v*.*.*` tag 时先跑 `npm run check` 再自动发布 Release
-- README 首屏终端演示图与目录
+- `docs/assets/demo.gif` — 基于真实命令输出渲染的终端演示 GIF（约 17 秒，< 100 KB）
+- `docs/assets/social-preview.png` — 1280×640 Social Preview 素材（需手动上传）
+- `docs/FAQ.md` — 10 条高频问题的实测答案
+- `.devcontainer/devcontainer.json` — GitHub Codespaces 一键环境
+- `npm run demo:offline` — 离线预览入口，只读自带 fixture，不调用 REA、不联网
+- 英文版 `README.md` 作为默认入口；中文版本移至 `README.zh-CN.md`
+- `docs/growth-log.md` — GitHub Traffic 基线与每周快照模板
+- `.github/ISSUE_TEMPLATE/`、`.github/pull_request_template.md`、tag 驱动 Release 工作流
+
+### Changed
+
+- README 首屏用真实 GIF 替换静态 SVG，并明确区分「离线预览」与「真实分析」两条路径
+- `package.json` keywords 扩展：`evidence-extraction`、`electron-analysis`、`mcp-probe`
+
+### Planned
 
 - 网站前端靶场：`inspect_web_page` 的 CDP 示例与 DOM / 网络证据提取
 - `.asar` 真实应用示例
 - `compare_application_versions` 的版本差异工作流
-- 英文版 README
-
+- npm 发布 `rea-playbook`
 ## [1.0.0] - 2026-10-10
 
 首个公开版本。
