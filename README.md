@@ -5,7 +5,7 @@ A hands-on REA playbook: inspect a minimal Electron app, turn REA's 1.8 MB Evide
 [![CI](https://github.com/jinshi666888/rea-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/jinshi666888/rea-playbook/actions/workflows/ci.yml)
 [![Node.js](https://img.shields.io/badge/Node.js-22.19%2B%20%7C%2024.11%2B%20%7C%2026%2B-339933)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f4c430)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-28%2F28%20passing-4c1)](tests)
+[![Tests](https://img.shields.io/badge/tests-32%2F32%20passing-4c1)](tests)
 [![Release](https://img.shields.io/github/v/release/jinshi666888/rea-playbook)](https://github.com/jinshi666888/rea-playbook/releases)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/jinshi666888/rea-playbook)
 
@@ -13,9 +13,9 @@ A hands-on REA playbook: inspect a minimal Electron app, turn REA's 1.8 MB Evide
 
 ---
 
-## 30-second demo
+## Live demo (generated from real command output)
 
-Three commands from zero to a line-referenced report:
+Three commands from zero to a line-referenced report. The first run downloads `rea-agents@6.3.0` via `npx`, so allow a couple of minutes:
 
 ```bash
 npm run analyze && npm run extract && npm run verify
@@ -23,7 +23,7 @@ npm run analyze && npm run extract && npm run verify
 
 ![rea-playbook demo: analyze → extract → verify](docs/assets/demo.gif)
 
-> The output above is a **real** recording, not hand-written. It was generated from captured stdout of the actual commands.
+> The animation above is **generated from the real stdout** of those three commands (captured and rendered frame-by-frame), not hand-written.
 
 ---
 
@@ -57,7 +57,16 @@ This is **not a replacement for REA**. It is the runnable layer next to it.
 | Throw code at an LLM | None | No | No | No |
 | Ghidra / Hopper manual | Engine + license | Yes | Yes | No |
 | Plain AST tooling (ast-grep, etc.) | Light | Syntax only | N/A | Sometimes |
-| **REA + rea-playbook** | **Only Node.js** | **Yes, to the line** | **Yes, via limitations** | **Yes, 28 tests** |
+| **REA + rea-playbook** | **Only Node.js** | **Yes, to the line** | **Yes, via limitations** | **Yes, 32 tests** |
+
+---
+
+## Requirements
+
+- **Node.js 22.19+, 24.11+, or 26+.** Node 23 and 25 are not supported by REA's JavaScript path.
+- **npm** (ships with Node) — installs this repo's dependencies. This is the only step that needs network access.
+- **No native reverse-engineering engine required** for the JavaScript / Electron path. REA's native path (Hopper / Ghidra / IDA) is optional and is not used here.
+- **Internet access** is required once, to run `npm install` (it fetches the project's dependencies). After that, `npm run demo:offline` runs with **no network and no REA** — it only reads the bundled fixture.
 
 ---
 
@@ -135,7 +144,7 @@ rea-playbook/
 ├── scripts/
 │   ├── lint.mjs                # zero-dependency static checks
 │   └── make-fixture.mjs        # generate sanitized fixture from real Evidence
-└── tests/                      # 28 tests, fully offline
+└── tests/                      # 32 tests, fully offline
 ```
 
 ```mermaid

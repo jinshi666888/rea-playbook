@@ -10,7 +10,7 @@
 [![CI](https://github.com/jinshi666888/rea-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/jinshi666888/rea-playbook/actions/workflows/ci.yml)
 [![Node.js](https://img.shields.io/badge/Node.js-22.19%2B%20%7C%2024.11%2B%20%7C%2026%2B-339933)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f4c430)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-28%2F28%20passing-4c1)](tests)
+[![Tests](https://img.shields.io/badge/tests-32%2F32%20passing-4c1)](tests)
 [![Release](https://img.shields.io/github/v/release/jinshi666888/rea-playbook)](https://github.com/jinshi666888/rea-playbook/releases)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/jinshi666888/rea-playbook)
 
@@ -20,9 +20,9 @@
 
 ---
 
-## 30 秒看效果
+## 终端演示（基于真实命令输出生成）
 
-三条命令，从零到一份带行号的结论清单：
+三条命令，从零到一份带行号的结论清单。第一次运行会通过 `npx` 拉取 `rea-agents@6.3.0`，请留出几分钟：
 
 ```bash
 npm run analyze && npm run extract && npm run verify
@@ -65,7 +65,16 @@ npm run analyze && npm run extract && npm run verify
 | 把代码直接丢给 LLM | 不需要 | 否 | 否 | 否 |
 | Ghidra / Hopper 手工逆向 | 要装，且要许可 | 是 | 是 | 否 |
 | 纯 AST 工具（ast-grep 等） | 轻量 | 语法级 | 不适用 | 视项目 |
-| **REA + rea-playbook** | **只需 Node.js** | **是，精确到行** | **是，显式 limitations** | **是，28 个测试** |
+| **REA + rea-playbook** | **只需 Node.js** | **是，精确到行** | **是，显式 limitations** | **是，32 个测试** |
+
+---
+
+## 环境要求
+
+- **Node.js 22.19+、24.11+ 或 26+。**REA 的 JavaScript 路线不支持 Node 23 / 25。
+- **npm**（随 Node 自带）——安装本仓库的依赖；这是唯一需要联网的步骤。
+- **无需原生逆向引擎。**JavaScript / Electron 路线只要 Node.js；REA 的原生路线（Hopper / Ghidra / IDA）是可选的，本仓库用不到。
+- **联网只在安装阶段需要一次。**`npm install` 会拉取依赖；装完之后，`npm run demo:offline` 执行期间**不联网、不调用 REA**，只读取仓库内自带的脱敏样本。
 
 ---
 
@@ -148,7 +157,7 @@ rea-playbook/
 ├── scripts/
 │   ├── lint.mjs            零依赖静态检查
 │   └── make-fixture.mjs    从真实 Evidence 生成脱敏样本
-└── tests/                  28 个测试
+└── tests/                  32 个测试
 ```
 
 ```mermaid

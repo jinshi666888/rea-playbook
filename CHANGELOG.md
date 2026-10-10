@@ -21,11 +21,16 @@
 - 英文版 `README.md` 作为默认入口；中文版本移至 `README.zh-CN.md`
 - `docs/growth-log.md` — GitHub Traffic 基线与每周快照模板
 - `.github/ISSUE_TEMPLATE/`、`.github/pull_request_template.md`、tag 驱动 Release 工作流
+- `SECURITY.md` — 安全披露策略（私有漏洞上报、支持版本、响应时效）
+- `tests/demo-offline.test.mjs` + `tests/network-guard.cjs` — 离线预览契约测试：拦截 `fetch`/REA，断言全程零网络 / 零 REA 调用
+- `tests/profile-store.test.mjs` — `loadProfile` 离线分支单测（离线模式不调用 `fetch`）
 
 ### Changed
 
 - README 首屏用真实 GIF 替换静态 SVG，并明确区分「离线预览」与「真实分析」两条路径
 - `package.json` keywords 扩展：`evidence-extraction`、`electron-analysis`、`mcp-probe`
+- `recreate/profile-store.mjs` 的 `loadProfile` 增加 `REA_PLAYBOOK_OFFLINE=1` 短路分支；`npm run demo:offline` 现在**真正零网络调用**，不再先 `fetch` 再降级
+- README 首屏移除虚假的「30 秒」承诺，新增「Requirements / 环境要求」一节，测试计数 28 → 32
 
 ### Planned
 

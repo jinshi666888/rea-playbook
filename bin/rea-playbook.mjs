@@ -92,6 +92,8 @@ async function cmdVerify() {
  *   - 只需要 node，不需要 npm install 之外的任何东西
  */
 async function cmdDemoOffline() {
+  // 离线预览契约：强制走「不联网」分支，任何网络/REA 调用都会被测试拦截
+  process.env.REA_PLAYBOOK_OFFLINE = "1";
   const line = "─".repeat(64);
   console.log(line);
   console.log("OFFLINE PREVIEW / 离线预览");

@@ -23,10 +23,23 @@ export async function fetchRemoteProfile(profileId) {
 }
 
 /**
+ * 复现 src/profile-store.js 的 fetch + 失败降级。
+ *
+ * 离线预览（demo:offline）会通过 REA_PLAYBOOK_OFFLINE=1 走「直接降级」分支，
+ * 完全不发起网络请求，保证离线体验不依赖外网。
+ * 真实复现（verify）则走 fetch + catch 降级，忠实还原目标行为。
+ *
  * @param {string} profileId
  * @returns {Promise<any>}
  */
 export function loadProfile(profileId) {
+  if (process.env.REA_PLAYBOOK_OFFLINE === "1") {
+    return Promise.resolve({
+      id: profileId,
+      source: "local-cache",
+      displayName: "Cached User"
+    });
+  }
   return fetchRemoteProfile(profileId).catch(() => ({
     id: profileId,
     source: "local-cache",
