@@ -1,0 +1,30 @@
+# 依赖
+node_modules/
+
+# REA 分析产物（体积大且含本机绝对路径，不要提交）
+evidence.json
+evidence.err
+artifacts/
+*.evidence.local.json
+
+# 构建与缓存
+*.tsbuildinfo
+coverage/
+.cache/
+
+# 日志
+*.log
+npm-debug.log*
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 环境变量与密钥
+.env
+.env.*
+!.env.example
+*.pem
+*.key
