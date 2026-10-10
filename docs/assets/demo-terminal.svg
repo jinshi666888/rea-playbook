@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="586" viewBox="0 0 920 586" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="920" height="586" rx="12" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="919" height="585" rx="12" fill="none" stroke="#30363d" stroke-width="1"/>
+
+  <!-- title bar -->
+  <rect x="0" y="0" width="920" height="44" rx="12" fill="#21262d"/>
+  <rect x="0" y="32" width="920" height="12" fill="#21262d"/>
+  <line x1="0" y1="44" x2="920" y2="44" stroke="#30363d" stroke-width="1"/>
+  <circle cx="24" cy="22" r="6" fill="#ff5f57"/>
+  <circle cx="46" cy="22" r="6" fill="#febc2e"/>
+  <circle cx="68" cy="22" r="6" fill="#28c840"/>
+  <text x="460" y="27" fill="#8b949e" font-size="13" text-anchor="middle">rea-playbook — bash</text>
+
+  <!-- ① analyze -->
+  <text x="28" y="80" font-size="14">
+    <tspan fill="#7ee787">$</tspan><tspan fill="#e6edf3"> npm run analyze</tspan>
+  </text>
+  <text x="28" y="104" font-size="13"><tspan fill="#8b949e">  [rea] 7 files · 5 parsed JS · 767 AST nodes · 27 findings</tspan></text>
+  <text x="28" y="124" font-size="13"><tspan fill="#8b949e">  → evidence.json </tspan><tspan fill="#d2a8ff">1,799,239 bytes</tspan></text>
+
+  <!-- ② extract -->
+  <text x="28" y="162" font-size="14">
+    <tspan fill="#7ee787">$</tspan><tspan fill="#e6edf3"> npm run extract</tspan>
+  </text>
+  <text x="28" y="186" font-size="13"><tspan fill="#e6edf3">Evidence: 7 files, 5 parsed JS, 767 AST nodes, 27 findings</tspan></text>
+
+  <text x="28" y="216" font-size="13"><tspan fill="#79c0ff" font-weight="bold">### IPC CHANNELS (6)</tspan></text>
+  <text x="28" y="238" font-size="12.5">
+    <tspan fill="#ffa657">profile:read      </tspan><tspan fill="#8b949e">side=main  op=handle  </tspan><tspan fill="#7ee787">@ main.js:26:0</tspan>
+  </text>
+  <text x="28" y="256" font-size="12.5">
+    <tspan fill="#ffa657">route:resolve     </tspan><tspan fill="#8b949e">side=main  op=handle  </tspan><tspan fill="#7ee787">@ main.js:30:0</tspan>
+  </text>
+  <text x="28" y="274" font-size="12.5">
+    <tspan fill="#ffa657">profile:telemetry </tspan><tspan fill="#8b949e">side=main  op=on      </tspan><tspan fill="#7ee787">@ main.js:34:0</tspan>
+  </text>
+  <text x="28" y="292" font-size="12.5">
+    <tspan fill="#ffa657">PROFILE_CHANNEL   </tspan><tspan fill="#8b949e">renderer  op=invoke  </tspan><tspan fill="#f85149">resolution=dynamic</tspan><tspan fill="#8b949e">  @ preload.js:8:30</tspan>
+  </text>
+
+  <text x="28" y="322" font-size="13"><tspan fill="#79c0ff" font-weight="bold">### ELECTRON BOUNDARIES</tspan></text>
+  <text x="28" y="344" font-size="12.5">
+    <tspan fill="#d2a8ff">[browser-window]</tspan><tspan fill="#8b949e"> BrowserWindow@13:14-20:4   </tspan><tspan fill="#7ee787">@ main.js:13:14</tspan>
+  </text>
+  <text x="28" y="362" font-size="12.5">
+    <tspan fill="#d2a8ff">[context-bridge-api]</tspan><tspan fill="#8b949e"> demoBridge members=[readProfile, resolveRoute, sendTelemetry]</tspan>
+  </text>
+
+  <text x="28" y="392" font-size="13"><tspan fill="#79c0ff" font-weight="bold">### NETWORK</tspan></text>
+  <text x="28" y="414" font-size="12.5">
+    <tspan fill="#f0883e">[request] </tspan><tspan fill="#e6edf3">fetch </tspan><tspan fill="#7ee787">@ src/profile-store.js:4</tspan>
+  </text>
+  <text x="28" y="432" font-size="12.5">
+    <tspan fill="#f0883e">[response]</tspan><tspan fill="#e6edf3">json  </tspan><tspan fill="#7ee787">@ src/profile-store.js:13</tspan>
+  </text>
+
+  <!-- ③ verify -->
+  <text x="28" y="470" font-size="14">
+    <tspan fill="#7ee787">$</tspan><tspan fill="#e6edf3"> npm run verify</tspan>
+  </text>
+  <text x="28" y="494" font-size="12.5">
+    <tspan fill="#7ee787">  PASS</tspan><tspan fill="#8b949e">  路由表命中 /profile -&gt; profile</tspan>
+  </text>
+  <text x="28" y="512" font-size="12.5">
+    <tspan fill="#7ee787">  PASS</tspan><tspan fill="#8b949e">  未知路径走 FALLBACK_ROUTE -&gt; not-found</tspan>
+  </text>
+  <text x="28" y="530" font-size="12.5">
+    <tspan fill="#7ee787">  PASS</tspan><tspan fill="#8b949e">  bridge.sendTelemetry 单向无返回值（对应 ipcRenderer.send）</tspan>
+  </text>
+  <text x="28" y="556" font-size="13"><tspan fill="#7ee787" font-weight="bold">  10/10 checks passed</tspan></text>
+</svg>

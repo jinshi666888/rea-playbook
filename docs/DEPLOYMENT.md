@@ -53,8 +53,8 @@ curl -sSL -o rea-src.tar.gz -C - <URL>
 ### 1.2 推荐安装方式（已实测通过）
 
 ```bash
-mkdir -p /c/Users/Administrator/WorkBuddy/2026-10-10-15-38-27/rea-run
-cd /c/Users/Administrator/WorkBuddy/2026-10-10-15-38-27/rea-run
+mkdir -p <workspace>/rea-run
+cd <workspace>/rea-run
 # package.json 需存在（name/private/version 即可）
 npm install rea-agents@6.3.0
 ```
@@ -201,7 +201,7 @@ electron-demo/
 **CLI 方式**
 
 ```bash
-cd /c/Users/Administrator/WorkBuddy/2026-10-10-15-38-27/rea-run
+cd <workspace>/rea-run
 ./node_modules/.bin/rea analyze-javascript-application \
   "<repo>/targets/electron-demo" \
   --json > evidence.json 2> evidence.err
@@ -379,7 +379,7 @@ node -v                                          # v22.22.2
 npm view rea-agents version engines              # 6.3.0 / ^22.19.0 || ^24.11.0 || >=26.0.0
 
 # 安装
-cd /c/Users/Administrator/WorkBuddy/2026-10-10-15-38-27/rea-run
+cd <workspace>/rea-run
 npm install rea-agents@6.3.0                     # added 144 packages
 ./node_modules/.bin/rea --version                # 6.3.0
 

@@ -61,8 +61,8 @@
 **第 1 步：建目录**
 
 ```bash
-mkdir -p /c/Users/Administrator/WorkBuddy/2026-10-10-15-38-27/rea-run
-cd /c/Users/Administrator/WorkBuddy/2026-10-10-15-38-27/rea-run
+mkdir -p <workspace>/rea-run
+cd <workspace>/rea-run
 ```
 
 **第 2 步：建 package.json**
@@ -142,7 +142,7 @@ curl -sSL -o rea-src.tar.gz https://codeload.github.com/morluto/rea/tar.gz/refs/
 **输入**：
 
 ```bash
-cd /c/Users/Administrator/WorkBuddy/2026-10-10-15-38-27/rea-run
+cd <workspace>/rea-run
 
 ./node_modules/.bin/rea analyze-javascript-application \
   "<repo>/targets/electron-demo" \
@@ -568,7 +568,7 @@ window.addEventListener("DOMContentLoaded", handleRouteChange);
 ### 4.2 跑分析
 
 ```bash
-cd /c/Users/Administrator/WorkBuddy/2026-10-10-15-38-27/rea-run
+cd <workspace>/rea-run
 ./node_modules/.bin/rea analyze-javascript-application \
   "<repo>/targets/electron-demo" \
   --json > evidence.json 2> evidence.err
