@@ -8,6 +8,7 @@ A hands-on REA playbook: inspect a minimal Electron app, turn REA's 1.8 MB Evide
 [![Tests](https://img.shields.io/badge/tests-32%2F32%20passing-4c1)](tests)
 [![Release](https://img.shields.io/github/v/release/jinshi666888/rea-playbook)](https://github.com/jinshi666888/rea-playbook/releases)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/jinshi666888/rea-playbook)
+[![Featured by Awesome REA](https://raw.githubusercontent.com/reacher-z/Awesome-REA/main/assets/featured-by-awesome-rea-inline.svg)](https://github.com/reacher-z/Awesome-REA)
 
 [中文 README](README.zh-CN.md) · [Report issue](https://github.com/jinshi666888/rea-playbook/issues)
 
